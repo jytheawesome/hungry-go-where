@@ -4,9 +4,9 @@ import styles from "./FoodSearchBar.module.css";
 const FoodSearchBar = () => {
   return (
     <>
-      <form>
+      <form className={styles.form}>
         <div className="mb-3">
-          <input type="text" className="form-control" id="searchInput" />
+          <input type="text" className={"form-control"} id="searchInput" />
         </div>
         <button type="submit" className={styles.searchButton}>
           Submit
