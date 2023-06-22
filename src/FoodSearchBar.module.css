@@ -1,0 +1,6 @@
+.searchButton {
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: rgb(233, 210, 30);
+  margin-top: 30px;
+}
