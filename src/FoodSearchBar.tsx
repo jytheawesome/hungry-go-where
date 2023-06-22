@@ -1,12 +1,29 @@
-import React from "react";
+import React, {useRef, FormEvent} from "react";
 import styles from "./FoodSearchBar.module.css";
 
-const FoodSearchBar = () => {
+interface Props {
+  onSubmitHandler: (searchString: string) => void;
+}
+
+const FoodSearchBar = ({onSubmitHandler}: Props) => {
+  const searchStringRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    if (searchStringRef.current) {
+      onSubmitHandler(searchStringRef.current.value);
+    }
+  };
   return (
     <>
-      <form className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <div className="mb-3">
-          <input type="text" className={"form-control"} id="searchInput" />
+          <input
+            ref={searchStringRef}
+            type="text"
+            className={"form-control"}
+            id="searchInput"
+          />
         </div>
         <button type="submit" className={styles.searchButton}>
           Submit
