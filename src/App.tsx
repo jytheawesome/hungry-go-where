@@ -12,10 +12,11 @@ function App() {
     console.log(searchString);
   };
 
-  //testing fetch
+  /*
   useEffect(() => {
     axios.get("https://twitter.com").then((res) => console.log(res));
   }, [searchString]);
+  */
 
   return (
     <>
