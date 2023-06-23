@@ -1,25 +1,26 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import styles from "./UserLocation.module.css";
+import styles from "./NearestFood.module.css";
 
-const UserLocation = () => {
-  //Current user location
-  const [location, setLocation] = useState({latitude: 0, longitude: 0});
+const NearestFood = () => {
+  //Get user's current location
+  const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     } else {
-      console.log("Geolocation is not supported by your browser.");
+      console.log("Geolocation is not supported by the browser.");
     }
   }, []);
 
   function successCallback(position: Position) {
+    console.log("Successfully retrieved user location.");
     const {latitude, longitude} = position.coords;
-    setLocation({latitude, longitude});
+    setUserLocation({latitude, longitude});
   }
 
   function errorCallback(error: PositionError) {
-    console.log("Error getting location");
+    console.log("Error getting user location");
   }
 
   //Retrieve nearest restaurants
@@ -29,6 +30,7 @@ const UserLocation = () => {
   }
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
+  //Fetch nearest restaurants from backend server
   const fetchNearbyRestaurants = async (
     latitude: number,
     longitude: number
@@ -38,9 +40,8 @@ const UserLocation = () => {
       const response = await axios.get(url);
       const results = response.data.results;
       console.log(
-        "Successfully connected to backend server and retrieved restaurants."
+        `Successfully connected to backend server and retrieved restaurants. Number of restaurants: ${results.length}`
       );
-      console.log(results);
       return results;
     } catch (error) {
       console.error(
@@ -53,8 +54,8 @@ const UserLocation = () => {
 
   useEffect(() => {
     // Fetch nearby restaurants when the component mounts
-    const latitude = location.latitude; // Replace with the actual latitude
-    const longitude = location.longitude; // Replace with the actual longitude
+    const latitude = userLocation.latitude; // Replace with the actual latitude
+    const longitude = userLocation.longitude; // Replace with the actual longitude
 
     fetchNearbyRestaurants(latitude, longitude)
       .then((data) => {
@@ -67,10 +68,12 @@ const UserLocation = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <h2>
-          You are located in {location.latitude} and {location.longitude}
-        </h2>
+      <div>
+        {/* <h2>
+          You are located in {userLocation.latitude} and{" "}
+          {userLocation.longitude}
+        </h2> */}
+        <h2>Restaurants that are close to you:</h2>
         <ul className={styles.restaurantDisplay}>
           {restaurants.map((restaurant) => (
             <li key={restaurant.name}>
@@ -84,4 +87,4 @@ const UserLocation = () => {
   );
 };
 
-export default UserLocation;
+export default NearestFood;

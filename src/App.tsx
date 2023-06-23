@@ -1,29 +1,24 @@
 import {useState, useEffect} from "react";
 import FoodSearchBar from "./FoodSearchBar";
-import UserLocation from "./UserLocation";
+import UserLocation from "./NearestFood";
 import styles from "./App.module.css";
 import axios from "axios";
+import NearestFood from "./NearestFood";
 
 function App() {
   //state of user input
-  const [searchString, setSearchString] = useState<string>("");
+  const [searchString, setSearchString] = useState("");
   const onSubmitHandler = (searchString: string) => {
     setSearchString(searchString);
     console.log(searchString);
   };
 
-  /*
-  useEffect(() => {
-    axios.get("https://twitter.com").then((res) => console.log(res));
-  }, [searchString]);
-  */
-
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.mainContainer}>
         <h1 className={styles.title}> Hungry Go Where? </h1>
         <FoodSearchBar onSubmitHandler={onSubmitHandler} />
-        <UserLocation />
+        <NearestFood />
       </div>
     </>
   );
