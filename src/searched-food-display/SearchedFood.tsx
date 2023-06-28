@@ -20,7 +20,7 @@ const SearchedFood = ({searchString}: Props) => {
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `http://localhost:3001/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${keyword}`;
+    const url = `https://hungry-go-where-backend-1175077e6b3c.herokuapp.com/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${keyword}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;

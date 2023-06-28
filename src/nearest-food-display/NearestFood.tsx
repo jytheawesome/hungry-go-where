@@ -37,7 +37,7 @@ const NearestFood = () => {
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `http://localhost:3001/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
+    const url = `https://hungry-go-where-backend-1175077e6b3c.herokuapp.com/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;
