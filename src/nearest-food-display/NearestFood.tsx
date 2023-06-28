@@ -2,7 +2,11 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./NearestFood.module.css";
 
-const NearestFood = () => {
+interface Props {
+  onReceiveLocation: (location: {latitude: number; longitude: number}) => void;
+}
+
+const NearestFood = ({onReceiveLocation}: Props) => {
   //Set variable for user's current location
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
 
@@ -12,6 +16,7 @@ const NearestFood = () => {
       console.log("Successfully retrieved user location.");
       const {latitude, longitude} = position.coords;
       setUserLocation({latitude, longitude});
+      onReceiveLocation({latitude, longitude});
     }
 
     function errorCallback(error: PositionError) {

@@ -4,9 +4,10 @@ import axios from "axios";
 
 interface Props {
   searchString: string;
+  location: {latitude: number; longitude: number};
 }
 
-const SearchedFood = ({searchString}: Props) => {
+const SearchedFood = ({searchString, location}: Props) => {
   //Set variable for nearest restaurants
   interface Restaurant {
     name: string;
@@ -39,8 +40,8 @@ const SearchedFood = ({searchString}: Props) => {
 
   //Fetch searched restaurants
   useEffect(() => {
-    const latitude = 1.28944;
-    const longitude = 103.849983;
+    const latitude = location.latitude;
+    const longitude = location.longitude;
 
     fetchSearchedRestaurants(searchString, latitude, longitude)
       .then((data) => {
@@ -57,14 +58,20 @@ const SearchedFood = ({searchString}: Props) => {
   return (
     <>
       <h2>Restaurants nearest to you based on your search: {searchString}</h2>
-      <ul className={styles.restaurantDisplay}>
-        {restaurants.map((restaurant) => (
-          <li key={`${restaurant.name}-${restaurant.vicinity}`}>
-            <h3>{restaurant.name}</h3>
-            <p>{restaurant.vicinity}</p>
-          </li>
-        ))}
-      </ul>
+      {searchString == "" ? (
+        <p className={styles.restaurantDisplay}>
+          You did not include a search term yet
+        </p>
+      ) : (
+        <ul className={styles.restaurantDisplay}>
+          {restaurants.map((restaurant) => (
+            <li key={`${restaurant.name}-${restaurant.vicinity}`}>
+              <h3>{restaurant.name}</h3>
+              <p>{restaurant.vicinity}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
