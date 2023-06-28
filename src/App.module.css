@@ -4,6 +4,8 @@
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  overflow-y: scroll;
+  padding: 20px;
 }
 
 .title {

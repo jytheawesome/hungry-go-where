@@ -1,5 +1,5 @@
 .restaurantDisplay {
-  height: 300px; /* Adjust the height as needed */
+  height: 500px; /* Adjust the height as needed */
   overflow-y: auto;
   background-color: rgb(255, 193, 24);
   padding: 20px;
