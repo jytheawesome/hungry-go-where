@@ -6,7 +6,7 @@ const NearestFood = () => {
   //Set variable for user's current location
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
 
-  //Get user's current location
+  //Get user's current location via browser
   useEffect(() => {
     function successCallback(position: Position) {
       console.log("Successfully retrieved user location.");
@@ -15,7 +15,7 @@ const NearestFood = () => {
     }
 
     function errorCallback(error: PositionError) {
-      console.log("Error getting user location");
+      console.log("Error getting user location.");
     }
 
     if (navigator.geolocation) {
@@ -64,7 +64,7 @@ const NearestFood = () => {
         setRestaurants(data);
       })
       .catch((error) => {
-        console.log("Error fetch restaurants.");
+        console.log("Error fetching restaurants.");
       });
   }, [userLocation]);
 
