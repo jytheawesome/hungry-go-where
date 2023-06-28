@@ -62,6 +62,10 @@ const SearchedFood = ({searchString, location}: Props) => {
         <p className={styles.restaurantDisplay}>
           You did not include a search term yet
         </p>
+      ) : restaurants.length == 0 ? (
+        <p className={styles.restaurantDisplay}>
+          There were no matching restaurants found!
+        </p>
       ) : (
         <ul className={styles.restaurantDisplay}>
           {restaurants.map((restaurant) => (
