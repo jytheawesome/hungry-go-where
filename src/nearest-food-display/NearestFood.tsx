@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./NearestFood.module.css";
 
@@ -15,7 +15,7 @@ const NearestFood = () => {
     }
 
     function errorCallback(error: PositionError) {
-      console.log("Error getting user location.");
+      console.log(error, "Error getting user location.");
     }
 
     if (navigator.geolocation) {

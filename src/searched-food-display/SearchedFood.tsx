@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import styles from "./SearchedFood.module.css";
 import axios from "axios";
 

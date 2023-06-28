@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import FoodSearchBar from "./food-search-bar/FoodSearchBar";
 import styles from "./App.module.css";
 import NearestFood from "./nearest-food-display/NearestFood";
