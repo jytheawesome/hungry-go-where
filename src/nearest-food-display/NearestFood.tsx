@@ -37,7 +37,7 @@ const NearestFood = () => {
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `http://localhost:3001/api/places?latitude=${latitude}&longitude=${longitude}`;
+    const url = `http://localhost:3001/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;
@@ -64,7 +64,10 @@ const NearestFood = () => {
         setRestaurants(data);
       })
       .catch((error) => {
-        console.log("Error fetching restaurants.");
+        console.error(
+          "Error faced connecting to backend server to retrieve restaurants:",
+          error
+        );
       });
   }, [userLocation]);
 
@@ -78,7 +81,7 @@ const NearestFood = () => {
         <h2>Restaurants that are close to you:</h2>
         <ul className={styles.restaurantDisplay}>
           {restaurants.map((restaurant) => (
-            <li key={restaurant.name}>
+            <li key={`${restaurant.name}-${restaurant.vicinity}`}>
               <h3>{restaurant.name}</h3>
               <p>{restaurant.vicinity}</p>
             </li>
