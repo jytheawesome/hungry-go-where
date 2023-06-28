@@ -3,9 +3,21 @@ import axios from "axios";
 import styles from "./NearestFood.module.css";
 
 const NearestFood = () => {
-  //Get user's current location
+  //Set variable for user's current location
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
+
+  //Get user's current location
   useEffect(() => {
+    function successCallback(position: Position) {
+      console.log("Successfully retrieved user location.");
+      const {latitude, longitude} = position.coords;
+      setUserLocation({latitude, longitude});
+    }
+
+    function errorCallback(error: PositionError) {
+      console.log("Error getting user location");
+    }
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     } else {
@@ -13,24 +25,14 @@ const NearestFood = () => {
     }
   }, []);
 
-  function successCallback(position: Position) {
-    console.log("Successfully retrieved user location.");
-    const {latitude, longitude} = position.coords;
-    setUserLocation({latitude, longitude});
-  }
-
-  function errorCallback(error: PositionError) {
-    console.log("Error getting user location");
-  }
-
-  //Retrieve nearest restaurants
+  //Set variable for nearest restaurants
   interface Restaurant {
     name: string;
     vicinity: string;
   }
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
-  //Fetch nearest restaurants from backend server
+  //Define function to fetch nearest restaurants from backend server
   const fetchNearbyRestaurants = async (
     latitude: number,
     longitude: number
@@ -52,10 +54,10 @@ const NearestFood = () => {
     }
   };
 
+  //Fetch nearby restaurants
   useEffect(() => {
-    // Fetch nearby restaurants when the component mounts
-    const latitude = userLocation.latitude; // Replace with the actual latitude
-    const longitude = userLocation.longitude; // Replace with the actual longitude
+    const latitude = userLocation.latitude;
+    const longitude = userLocation.longitude;
 
     fetchNearbyRestaurants(latitude, longitude)
       .then((data) => {
@@ -64,15 +66,15 @@ const NearestFood = () => {
       .catch((error) => {
         console.log("Error fetch restaurants.");
       });
-  }, []);
+  }, [userLocation]);
 
   return (
     <>
       <div>
-        {/* <h2>
+        <h2>
           You are located in {userLocation.latitude} and{" "}
           {userLocation.longitude}
-        </h2> */}
+        </h2>
         <h2>Restaurants that are close to you:</h2>
         <ul className={styles.restaurantDisplay}>
           {restaurants.map((restaurant) => (
