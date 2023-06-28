@@ -15,40 +15,40 @@ const SearchedFood = ({searchString}: Props) => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   //Define function to search for restaurants based on keyword from backend server
-  const fetchNearbyRestaurants = async (
-    searchString: string,
+  const fetchSearchedRestaurants = async (
+    keyword: string,
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `http://localhost:3001/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${searchString}`;
+    const url = `http://localhost:3001/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${keyword}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;
       console.log(
-        `Successfully connected to backend server and retrieved searched restaurants. Number of restaurants: ${results.length}`
+        `Successfully searched for restaurants based on keyword. Total: ${results.length}`
       );
       return results;
     } catch (error) {
       console.error(
-        "Error faced connecting to backend server to retrieve searched restaurants:",
+        "Error faced searching for restaurants based on keyword: ",
         error
       );
       return [];
     }
   };
 
-  //Fetch nearby restaurants
+  //Fetch searched restaurants
   useEffect(() => {
     const latitude = 1.28944;
     const longitude = 103.849983;
 
-    fetchNearbyRestaurants(searchString, latitude, longitude)
+    fetchSearchedRestaurants(searchString, latitude, longitude)
       .then((data) => {
         setRestaurants(data);
       })
       .catch((error) => {
         console.error(
-          "Error faced connecting to backend server to retrieve restaurants:",
+          "Error faced searching for restaurants based on keyword: ",
           error
         );
       });
@@ -56,11 +56,7 @@ const SearchedFood = ({searchString}: Props) => {
 
   return (
     <>
-      <div>
-        {" "}
-        <p>{searchString}</p>
-      </div>
-      <h2>Restaurants nearest to you based on your search:</h2>
+      <h2>Restaurants nearest to you based on your search: {searchString}</h2>
       <ul className={styles.restaurantDisplay}>
         {restaurants.map((restaurant) => (
           <li key={`${restaurant.name}-${restaurant.vicinity}`}>

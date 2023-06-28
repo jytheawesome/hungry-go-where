@@ -42,14 +42,11 @@ const NearestFood = () => {
       const response = await axios.get(url);
       const results = response.data.results;
       console.log(
-        `Successfully connected to backend server and retrieved restaurants. Number of restaurants: ${results.length}`
+        `Successfully found nearest restaurants. Total: ${results.length}`
       );
       return results;
     } catch (error) {
-      console.error(
-        "Error faced connecting to backend server to retrieve restaurants:",
-        error
-      );
+      console.error("Error finding nearest restaurants:", error);
       return [];
     }
   };
@@ -64,10 +61,7 @@ const NearestFood = () => {
         setRestaurants(data);
       })
       .catch((error) => {
-        console.error(
-          "Error faced connecting to backend server to retrieve restaurants:",
-          error
-        );
+        console.error("Error finding nearest restaurants:", error);
       });
   }, [userLocation]);
 
