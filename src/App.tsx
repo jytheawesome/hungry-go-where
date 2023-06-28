@@ -1,9 +1,7 @@
 import {useState, useEffect} from "react";
-import FoodSearchBar from "./FoodSearchBar";
-import UserLocation from "./NearestFood";
+import FoodSearchBar from "./food-search-bar/FoodSearchBar";
 import styles from "./App.module.css";
-import axios from "axios";
-import NearestFood from "./NearestFood";
+import NearestFood from "./nearest-food-display/NearestFood";
 
 function App() {
   //state of user input
