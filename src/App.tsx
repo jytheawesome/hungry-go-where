@@ -25,8 +25,10 @@ function App() {
       <div className={styles.mainContainer}>
         <h1 className={styles.title}> Hungry Go Where? </h1>
         <FoodSearchBar onSubmitHandler={onSubmitHandler} />
-        <NearestFood onReceiveLocation={onReceiveLocation} />
-        <SearchedFood searchString={searchString} location={userLocation} />
+        <div className={styles.restaurantDisplayContainer}>
+          <NearestFood onReceiveLocation={onReceiveLocation} />
+          <SearchedFood searchString={searchString} location={userLocation} />
+        </div>
       </div>
     </>
   );

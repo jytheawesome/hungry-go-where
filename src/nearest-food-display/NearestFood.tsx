@@ -72,13 +72,13 @@ const NearestFood = ({onReceiveLocation}: Props) => {
 
   return (
     <>
-      <div>
+      <div className={styles.nearestRestaurantDisplay}>
         <h2>
           You are located in {userLocation.latitude} and{" "}
           {userLocation.longitude}
         </h2>
         <h2>Restaurants that are close to you:</h2>
-        <ul className={styles.restaurantDisplay}>
+        <ul>
           {restaurants.map((restaurant) => (
             <li key={`${restaurant.name}-${restaurant.vicinity}`}>
               <h3>{restaurant.name}</h3>

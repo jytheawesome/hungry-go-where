@@ -16,7 +16,8 @@ const FoodSearchBar = ({onSubmitHandler}: Props) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <h3> Search for your favourite restaurants here. Eg. Western </h3>
+      <form onSubmit={handleSubmit} className={styles.restaurantForm}>
         <div className="mb-3">
           <input
             ref={searchStringRef}

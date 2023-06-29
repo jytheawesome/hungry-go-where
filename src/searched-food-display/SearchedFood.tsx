@@ -57,25 +57,23 @@ const SearchedFood = ({searchString, location}: Props) => {
 
   return (
     <>
-      <h2>Restaurants nearest to you based on your search: {searchString}</h2>
-      {searchString == "" ? (
-        <p className={styles.restaurantDisplay}>
-          You did not include a search term yet
-        </p>
-      ) : restaurants.length == 0 ? (
-        <p className={styles.restaurantDisplay}>
-          There were no matching restaurants found!
-        </p>
-      ) : (
-        <ul className={styles.restaurantDisplay}>
-          {restaurants.map((restaurant) => (
-            <li key={`${restaurant.name}-${restaurant.vicinity}`}>
-              <h3>{restaurant.name}</h3>
-              <p>{restaurant.vicinity}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className={styles.searchedRestaurantDisplay}>
+        <h2>Restaurants nearest to you based on your search: {searchString}</h2>
+        {searchString == "" ? (
+          <p>You did not include a search term yet</p>
+        ) : restaurants.length == 0 ? (
+          <p>There were no matching restaurants found!</p>
+        ) : (
+          <ul>
+            {restaurants.map((restaurant) => (
+              <li key={`${restaurant.name}-${restaurant.vicinity}`}>
+                <h3>{restaurant.name}</h3>
+                <p>{restaurant.vicinity}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </>
   );
 };

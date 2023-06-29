@@ -1,4 +1,4 @@
-.restaurantDisplay {
+.nearestRestaurantDisplay {
   height: 300px; /* Adjust the height as needed */
   overflow-y: auto;
   background-color: rgb(255, 193, 24);
