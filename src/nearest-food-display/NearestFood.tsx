@@ -42,7 +42,7 @@ const NearestFood = ({onReceiveLocation}: Props) => {
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `https://hungry-go-where-backend-1175077e6b3c.herokuapp.com/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
+    const url = `https://hungry-go-where-api.vercel.app/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;

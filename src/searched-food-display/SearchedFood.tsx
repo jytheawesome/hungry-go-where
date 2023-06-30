@@ -21,7 +21,7 @@ const SearchedFood = ({searchString, location}: Props) => {
     latitude: number,
     longitude: number
   ): Promise<any[]> => {
-    const url = `https://hungry-go-where-backend-1175077e6b3c.herokuapp.com/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${keyword}`;
+    const url = `https://hungry-go-where-api.vercel.app/api/search-restaurants?latitude=${latitude}&longitude=${longitude}&keyword=${keyword}`;
     try {
       const response = await axios.get(url);
       const results = response.data.results;
