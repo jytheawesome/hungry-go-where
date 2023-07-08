@@ -1,5 +1,7 @@
 .searchedRestaurantDisplay {
-  height: 300px; /* Adjust the height as needed */
+  height: 350px;
+  width: 450px;
   overflow-y: auto;
   background-color: rgb(255, 193, 24);
+  padding: 30px;
 }

@@ -7,19 +7,20 @@
   padding: 20px;
 }
 
-.restaurantDisplayContainer {
+.title {
+  margin-bottom: 30px;
+}
+
+.restaurantsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  /*overflow-y: scroll; */
-  padding: 20px;
+  margin: 20px;
+  max-width: 1000px;
+  max-height: 500px;
 }
 
-.restaurantDisplayContainer > * {
-  margin-right: 30px; /* Add a small right margin between the items */
-}
-
-.title {
-  margin-bottom: 30px;
+.restaurantsContainer > * {
+  margin: 5px;
 }

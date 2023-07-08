@@ -1,18 +1,21 @@
 import {useState} from "react";
-import FoodSearchBar from "./food-search-bar/FoodSearchBar";
 import styles from "./App.module.css";
-import NearestFood from "./nearest-food-display/NearestFood";
-import SearchedFood from "./searched-food-display/SearchedFood";
+import NearestFood from "../nearest-food-display/NearestFood";
+import FoodSearchBar from "../food-search-bar/FoodSearchBar";
+import SearchedFood from "../searched-food-display/SearchedFood";
 
 function App() {
-  //state of user input
+  // user search keywords
   const [searchString, setSearchString] = useState("");
+  // user location
   const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
 
-  const onSubmitHandler = (searchString: string) => {
+  // handler for submitting search keywords
+  const onSubmitSearch = (searchString: string) => {
     setSearchString(searchString);
   };
 
+  // handler for receiving user location
   const onReceiveLocation = (location: {
     latitude: number;
     longitude: number;
@@ -24,8 +27,8 @@ function App() {
     <>
       <div className={styles.mainContainer}>
         <h1 className={styles.title}> Hungry Go Where? </h1>
-        <FoodSearchBar onSubmitHandler={onSubmitHandler} />
-        <div className={styles.restaurantDisplayContainer}>
+        <FoodSearchBar onSubmitSearch={onSubmitSearch} />
+        <div className={styles.restaurantsContainer}>
           <NearestFood onReceiveLocation={onReceiveLocation} />
           <SearchedFood searchString={searchString} location={userLocation} />
         </div>

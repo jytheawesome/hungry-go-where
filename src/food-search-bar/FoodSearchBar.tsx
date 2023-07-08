@@ -2,16 +2,16 @@ import {useRef, FormEvent} from "react";
 import styles from "./FoodSearchBar.module.css";
 
 interface Props {
-  onSubmitHandler: (searchString: string) => void;
+  onSubmitSearch: (searchString: string) => void;
 }
 
-const FoodSearchBar = ({onSubmitHandler}: Props) => {
+const FoodSearchBar = ({onSubmitSearch}: Props) => {
   const searchStringRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (searchStringRef.current) {
-      onSubmitHandler(searchStringRef.current.value);
+      onSubmitSearch(searchStringRef.current.value);
     }
   };
   return (
