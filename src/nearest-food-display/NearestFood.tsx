@@ -3,32 +3,11 @@ import axios from "axios";
 import styles from "./NearestFood.module.css";
 
 interface Props {
-  onReceiveLocation: (location: {latitude: number; longitude: number}) => void;
+  userLocation: {latitude: number; longitude: number};
 }
 
-const NearestFood = ({onReceiveLocation}: Props) => {
-  //Set variable for user's current location
-  const [userLocation, setUserLocation] = useState({latitude: 0, longitude: 0});
-
-  //Get user's current location via browser
-  useEffect(() => {
-    function successCallback(position: Position) {
-      console.log("Successfully retrieved user location.");
-      const {latitude, longitude} = position.coords;
-      setUserLocation({latitude, longitude});
-      onReceiveLocation({latitude, longitude});
-    }
-
-    function errorCallback(error: PositionError) {
-      console.log(error, "Error getting user location.");
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    } else {
-      console.log("Geolocation is not supported by the browser.");
-    }
-  }, []);
+const NearestFood = ({userLocation}: Props) => {
+  // Declarations
 
   //Set variable for nearest restaurants
   interface Restaurant {
@@ -37,7 +16,7 @@ const NearestFood = ({onReceiveLocation}: Props) => {
   }
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
-  //Define function to fetch nearest restaurants from backend server
+  // Function to fetch nearest restaurants from backend server
   const fetchNearbyRestaurants = async (
     latitude: number,
     longitude: number
@@ -47,7 +26,7 @@ const NearestFood = ({onReceiveLocation}: Props) => {
       const response = await axios.get(url);
       const results = response.data.results;
       console.log(
-        `Successfully found nearest restaurants. Total: ${results.length}`
+        `Successfully found nearest restaurants. Total: ${results.length}. Coords: ${latitude}, ${longitude}`
       );
       return results;
     } catch (error) {
@@ -56,7 +35,7 @@ const NearestFood = ({onReceiveLocation}: Props) => {
     }
   };
 
-  //Fetch nearby restaurants
+  //Fetch nearby restaurants.
   useEffect(() => {
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
@@ -72,7 +51,7 @@ const NearestFood = ({onReceiveLocation}: Props) => {
 
   return (
     <>
-      <div className={styles.nearestRestaurantDisplay}>
+      <div className={styles.nearestRestaurantsContainer}>
         <h3>
           Your coordinates are {userLocation.latitude} and{" "}
           {userLocation.longitude}. Restaurants that are closest to you:

@@ -57,7 +57,7 @@ const SearchedFood = ({searchString, location}: Props) => {
 
   return (
     <>
-      <div className={styles.searchedRestaurantDisplay}>
+      <div className={styles.searchedRestaurantContainer}>
         <h3>Restaurants nearest to you based on your search: {searchString}</h3>
         {searchString == "" ? (
           <h3>You did not include a search term yet</h3>
