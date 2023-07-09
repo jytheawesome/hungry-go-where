@@ -35,19 +35,27 @@ const NearestFood = ({userLocation}: Props) => {
     }
   };
 
-  //Fetch nearby restaurants.
-  useEffect(() => {
-    const latitude = userLocation.latitude;
-    const longitude = userLocation.longitude;
+  fetchNearbyRestaurants(userLocation.latitude, userLocation.longitude)
+    .then((data) => {
+      setRestaurants(data);
+    })
+    .catch((error) => {
+      console.error("Error finding nearest restaurants:", error);
+    });
 
-    fetchNearbyRestaurants(latitude, longitude)
-      .then((data) => {
-        setRestaurants(data);
-      })
-      .catch((error) => {
-        console.error("Error finding nearest restaurants:", error);
-      });
-  }, [userLocation]);
+  // //Fetch nearby restaurants.
+  // useEffect(() => {
+  //   const latitude = userLocation.latitude;
+  //   const longitude = userLocation.longitude;
+  //   if (latitude == 0 || longitude == 0) return;
+  //   fetchNearbyRestaurants(latitude, longitude)
+  //     .then((data) => {
+  //       setRestaurants(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error finding nearest restaurants:", error);
+  //     });
+  // }, []);
 
   return (
     <>
