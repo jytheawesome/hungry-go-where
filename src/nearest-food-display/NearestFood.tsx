@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./NearestFood.module.css";
 
@@ -35,27 +35,27 @@ const NearestFood = ({userLocation}: Props) => {
     }
   };
 
-  fetchNearbyRestaurants(userLocation.latitude, userLocation.longitude)
-    .then((data) => {
-      setRestaurants(data);
-    })
-    .catch((error) => {
-      console.error("Error finding nearest restaurants:", error);
-    });
+  // fetchNearbyRestaurants(userLocation.latitude, userLocation.longitude)
+  //   .then((data) => {
+  //     setRestaurants(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error finding nearest restaurants:", error);
+  //   });
 
-  // //Fetch nearby restaurants.
-  // useEffect(() => {
-  //   const latitude = userLocation.latitude;
-  //   const longitude = userLocation.longitude;
-  //   if (latitude == 0 || longitude == 0) return;
-  //   fetchNearbyRestaurants(latitude, longitude)
-  //     .then((data) => {
-  //       setRestaurants(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error finding nearest restaurants:", error);
-  //     });
-  // }, []);
+  //Fetch nearby restaurants.
+  useEffect(() => {
+    const latitude = userLocation.latitude;
+    const longitude = userLocation.longitude;
+    if (latitude == 0 || longitude == 0) return;
+    fetchNearbyRestaurants(latitude, longitude)
+      .then((data) => {
+        setRestaurants(data);
+      })
+      .catch((error) => {
+        console.error("Error finding nearest restaurants:", error);
+      });
+  }, [userLocation]);
 
   return (
     <>
