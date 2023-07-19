@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import styles from "./SuggestedFood.module.css";
 import axios from "axios";
-import {getExistingQueries} from "../cookie";
+import {getExistingQueries, getCookie} from "../cookie";
 
 // declarations
 
@@ -21,9 +21,6 @@ const fetchSuggestedRestaurantsByQuery = async (
     const response = await axios.get(url);
     // only get 2 restaurants per query
     const results = response.data.results.slice(0, 2);
-    console.log(
-      `Successfully searched for restaurants based on a query. Total: ${results.length}`
-    );
     return results;
   } catch (error) {
     console.error(
@@ -51,17 +48,18 @@ const fetchSuggestedRestaurants = async (
   }
 
   console.log(
-    "Successfully searched for restaurants based on past queries. Total: ",
-    allResults.length
+    `Successfully searched for restaurants based on past queries. Total: ${allResults.length}`
   );
   return allResults;
 };
 
 // Component
 const SuggestedFood = ({location}: Props) => {
-  console.log(getExistingQueries());
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [pastQueries, setPastQueries] = useState<string[]>(
+    getExistingQueries()
+  );
 
   //Fetch suggested restaurants
   useEffect(() => {
@@ -79,12 +77,13 @@ const SuggestedFood = ({location}: Props) => {
           error
         );
       });
-  }, []);
+  }, [pastQueries]);
 
   return (
     <>
       <div className={styles.suggestedRestaurantsContainer}>
         <h3>Suggested restaurants based on your past searches: </h3>
+        <h3>{getCookie("searchQueries")}</h3>
         {restaurants.length == 0 ? (
           <h3> You do not have any past searches. </h3>
         ) : (

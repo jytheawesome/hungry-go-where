@@ -8,7 +8,7 @@ export function setCookie(
   date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
   const expires = "expires=" + date.toUTCString();
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
-  console.log("Set cookie successfully!");
+  console.log("Set cookie successfully!", value);
 }
 
 //To retrieve list of user search queries from browser cookie
@@ -26,6 +26,5 @@ export function getCookie(name: string): string | null {
 // To get existing queries from cookie in JSON form. Returns null if cookie not found.
 export function getExistingQueries(): string[] {
   const cookieValue = getCookie("searchQueries");
-  console.log("Retrieved user's past searches from cookies.");
   return cookieValue ? JSON.parse(cookieValue) : [];
 }
