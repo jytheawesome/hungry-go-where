@@ -57,7 +57,7 @@ const fetchSuggestedRestaurants = async (
 const SuggestedFood = ({location}: Props) => {
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [pastQueries] = useState<string[]>(getExistingQueries());
+  //const [pastQueries] = useState<string[]>(getExistingQueries());
 
   //Fetch suggested restaurants
   useEffect(() => {
