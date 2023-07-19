@@ -62,9 +62,6 @@ const SuggestedFood = ({location}: Props) => {
   console.log(getExistingQueries());
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [pastQueries, setPastQueries] = useState<string[]>(
-    getExistingQueries()
-  );
 
   //Fetch suggested restaurants
   useEffect(() => {
@@ -82,7 +79,7 @@ const SuggestedFood = ({location}: Props) => {
           error
         );
       });
-  }, [pastQueries]);
+  }, []);
 
   return (
     <>
