@@ -21,6 +21,7 @@ const fetchSuggestedRestaurantsByQuery = async (
     const response = await axios.get(url);
     // only get 2 restaurants per query
     const results = response.data.results.slice(0, 2);
+    console.log(results.length);
     return results;
   } catch (error) {
     console.error(
