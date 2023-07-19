@@ -64,6 +64,7 @@ const SuggestedFood = ({location}: Props) => {
     const latitude = location.latitude;
     const longitude = location.longitude;
     const pastQueriesResult = getExistingQueries();
+    console.log("The cookie that has been seen is : ", getExistingQueries());
 
     fetchSuggestedRestaurants(pastQueriesResult, latitude, longitude)
       .then((data) => {
@@ -75,7 +76,7 @@ const SuggestedFood = ({location}: Props) => {
           error
         );
       });
-  }, [pastQueries]);
+  }, []);
 
   return (
     <>
