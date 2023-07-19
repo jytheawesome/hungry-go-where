@@ -41,3 +41,9 @@ interface PositionOptions {
   maximumAge?: number;
   timeout?: number;
 }
+
+// Restaurant interface
+interface Restaurant {
+  name: string;
+  vicinity: string;
+}

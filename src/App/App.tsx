@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 import NearestFood from "../nearest-food-display/NearestFood";
 import FoodSearchBar from "../food-search-bar/FoodSearchBar";
 import SearchedFood from "../searched-food-display/SearchedFood";
+import SuggestedFood from "../suggested-food/SuggestedFood";
 
 function App() {
   //Declarations
@@ -48,6 +49,7 @@ function App() {
           <NearestFood userLocation={userLocation} />
           <SearchedFood searchString={searchString} location={userLocation} />
         </div>
+        <SuggestedFood location={userLocation} />
       </div>
     </>
   );
