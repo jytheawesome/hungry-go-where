@@ -24,3 +24,8 @@
 .restaurantsContainer > * {
   margin: 5px;
 }
+
+.seeNearestRestaurantsButton {
+  background-color: rgb(233, 210, 30);
+  margin-top: 20px;
+}

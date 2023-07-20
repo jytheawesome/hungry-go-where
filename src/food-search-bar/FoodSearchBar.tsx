@@ -42,7 +42,7 @@ const FoodSearchBar = ({onSubmitSearch}: Props) => {
           />
         </div>
         <button type="submit" className={styles.searchButton}>
-          Submit
+          Search
         </button>
       </form>
     </>

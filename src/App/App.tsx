@@ -12,6 +12,11 @@ function App() {
   const [userLocation, setUserLocation] = useState({longitude: 0, latitude: 0});
   // user search keywords
   const [searchString, setSearchString] = useState("");
+  const [seeNearestFood, toggleSeeNearestFood] = useState(false);
+
+  const onClickSeeNearest = () => {
+    toggleSeeNearestFood(!seeNearestFood);
+  };
 
   // handler for submitting search keywords
   const onSubmitSearch = (searchString: string) => {
@@ -45,8 +50,15 @@ function App() {
       <div className={styles.mainContainer}>
         <h1 className={styles.title}> Hungry Go Where? </h1>
         <FoodSearchBar onSubmitSearch={onSubmitSearch} />
+        <button
+          className={styles.seeNearestRestaurantsButton}
+          onClick={onClickSeeNearest}
+        >
+          {" "}
+          See restaurants near me{" "}
+        </button>
         <div className={styles.restaurantsContainer}>
-          <NearestFood userLocation={userLocation} />
+          {seeNearestFood && <NearestFood userLocation={userLocation} />}
           <SearchedFood searchString={searchString} location={userLocation} />
         </div>
         <SuggestedFood location={userLocation} />
