@@ -47,7 +47,7 @@ const NearestFood = ({userLocation}: Props) => {
   useEffect(() => {
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
-    //if (latitude == 0 || longitude == 0) return;
+    if (latitude == 0 || longitude == 0) return;
     fetchNearbyRestaurants(latitude, longitude)
       .then((data) => {
         setRestaurants(data);
