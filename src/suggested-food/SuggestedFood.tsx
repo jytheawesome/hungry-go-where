@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import styles from "./SuggestedFood.module.css";
 import axios from "axios";
-import {getExistingQueries, getCookie} from "../cookie";
+import {getExistingQueries} from "../cookie";
 
 // declarations
 
