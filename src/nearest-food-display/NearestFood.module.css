@@ -1,12 +1,32 @@
 .nearestRestaurantsContainer {
   position: relative;
-  height: 350px;
-  width: 450px;
+  max-width: 1000px;
+  max-height: 1000px;
   overflow-y: auto;
   background-color: rgb(255, 193, 24);
   padding: 30px;
 }
 
+.photoAndDescription {
+  margin: 20px;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  flex-direction: row;
+  padding: 20px;
+}
+
+.photo {
+  position: absolute;
+  right: 0;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.restaurantImage {
+  height: 200px;
+  width: 200px;
+}
 .closeButton {
   position: absolute;
   border-radius: 5px;

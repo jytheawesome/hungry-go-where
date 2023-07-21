@@ -1,7 +1,7 @@
 .suggestedRestaurantsContainer {
   position: relative;
-  height: 350px;
-  width: 450px;
+  max-width: 1000px;
+  max-height: 700px;
   overflow-y: auto;
   background-color: rgb(255, 193, 24);
   padding: 30px;

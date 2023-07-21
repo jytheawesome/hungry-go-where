@@ -4,6 +4,7 @@ import NearestFood from "../nearest-food-display/NearestFood";
 import FoodSearchBar from "../food-search-bar/FoodSearchBar";
 import SearchedFood from "../searched-food-display/SearchedFood";
 import SuggestedFood from "../suggested-food/SuggestedFood";
+import {Position, PositionError} from "../custom";
 
 function App() {
   //Declarations
@@ -12,40 +13,35 @@ function App() {
   const [userLocation, setUserLocation] = useState({longitude: 0, latitude: 0});
   // user search keywords
   const [searchString, setSearchString] = useState("");
+  // Restaurant display view
   const [seeNearestFood, toggleSeeNearestFood] = useState(false);
-  const [seeRecommendedFood, toggleSeeRecommendedFood] = useState(false);
+  const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
   const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);
 
-  const onClickSeeNearest = () => {
-    toggleSeeNearestFood(true);
-    toggleSeeSearchedFood(false);
-    toggleSeeRecommendedFood(false);
-  };
-
-  const onClickSeeRecommended = () => {
-    toggleSeeNearestFood(false);
-    toggleSeeSearchedFood(false);
-    toggleSeeRecommendedFood(true);
-  };
-
-  const onClickCloseNearest = () => {
-    toggleSeeNearestFood(false);
-  };
-
-  const onClickCloseRecommended = () => {
-    toggleSeeRecommendedFood(false);
-  };
-
-  const onClickCloseSearched = () => {
-    toggleSeeSearchedFood(false);
+  const restaurantDisplaySelector = (selector: string) => {
+    if (selector == "Nearest") {
+      toggleSeeNearestFood(true);
+      toggleSeeSearchedFood(false);
+      toggleSeeSuggestedFood(false);
+    } else if (selector == "Searched") {
+      toggleSeeNearestFood(false);
+      toggleSeeSearchedFood(true);
+      toggleSeeSuggestedFood(false);
+    } else if (selector == "Suggested") {
+      toggleSeeNearestFood(false);
+      toggleSeeSearchedFood(false);
+      toggleSeeSuggestedFood(true);
+    } else {
+      toggleSeeNearestFood(false);
+      toggleSeeSearchedFood(false);
+      toggleSeeSuggestedFood(false);
+    }
   };
 
   // handler for submitting search keywords
   const onSubmitSearch = (searchString: string) => {
     setSearchString(searchString);
-    toggleSeeSearchedFood(true);
-    toggleSeeNearestFood(false);
-    toggleSeeRecommendedFood(false);
+    restaurantDisplaySelector("Searched");
   };
 
   // define success function for getting user location
@@ -78,21 +74,17 @@ function App() {
         <div className={styles.buttonsContainer}>
           <button
             className={
-              seeNearestFood
-                ? styles.seeNearestRestaurantsButtonHighlighted
-                : styles.seeNearestRestaurantsButton
+              seeNearestFood ? styles.buttonHighlight : styles.buttonDefault
             }
-            onClick={onClickSeeNearest}
+            onClick={() => restaurantDisplaySelector("Nearest")}
           >
             See restaurants near me
           </button>
           <button
             className={
-              seeRecommendedFood
-                ? styles.seeRecommendedRestaurantsButtonHighlighted
-                : styles.seeRecommendedRestaurantsButton
+              seeSuggestedFood ? styles.buttonHighlight : styles.buttonDefault
             }
-            onClick={onClickSeeRecommended}
+            onClick={() => restaurantDisplaySelector("Suggested")}
           >
             See restaurants based on my past searches
           </button>
@@ -101,23 +93,23 @@ function App() {
           {seeNearestFood && (
             <NearestFood
               userLocation={userLocation}
-              onClickClose={onClickCloseNearest}
+              onClickClose={() => restaurantDisplaySelector("Close")}
             />
           )}
           {seeSearchedFood && (
             <SearchedFood
-              onClickClose={onClickCloseSearched}
+              onClickClose={() => restaurantDisplaySelector("Close")}
               searchString={searchString}
               location={userLocation}
             />
           )}
+          {seeSuggestedFood && (
+            <SuggestedFood
+              onClickClose={() => restaurantDisplaySelector("Close")}
+              location={userLocation}
+            />
+          )}
         </div>
-        {seeRecommendedFood && (
-          <SuggestedFood
-            onClickClose={onClickCloseRecommended}
-            location={userLocation}
-          />
-        )}
       </div>
     </>
   );

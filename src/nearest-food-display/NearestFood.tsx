@@ -1,22 +1,24 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import styles from "./NearestFood.module.css";
+import {Restaurant} from "../custom";
 
 interface Props {
   userLocation: {latitude: number; longitude: number};
   onClickClose: () => void;
 }
-
 const NearestFood = ({userLocation, onClickClose}: Props) => {
   // Declarations
   console.log("Coordinates for nearest restaurants: " + userLocation);
 
-  //Set variable for nearest restaurants
-  interface Restaurant {
-    name: string;
-    vicinity: string;
-  }
+  // //Set variable for nearest restaurants
+  // interface Restaurant {
+  //   name: string;
+  //   vicinity: string;
+  // }
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  //const apiKey = process.env.maps_api;
+  const apiKey = "AIzaSyByYmhlaUy0wx7xIb8J50vNAER2MPF8jns";
 
   // Function to fetch nearest restaurants from backend server
   const fetchNearbyRestaurants = async (
@@ -69,8 +71,23 @@ const NearestFood = ({userLocation, onClickClose}: Props) => {
         <ul>
           {restaurants.map((restaurant) => (
             <li key={`${restaurant.name}-${restaurant.vicinity}`}>
-              <h3>{restaurant.name}</h3>
-              <p>{restaurant.vicinity}</p>
+              <div className={styles.photoAndDescription}>
+                <div className={styles.description}>
+                  <h3>{restaurant.name}</h3>
+                  <p>{restaurant.vicinity}</p>
+                </div>
+                <div className={styles.photo}>
+                  {restaurant.photos ? (
+                    <img
+                      className={styles.restaurantImage}
+                      src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
+                    &key=AIzaSyByYmhlaUy0wx7xIb8J50vNAER2MPF8jns`}
+                    />
+                  ) : (
+                    "No photo available :("
+                  )}
+                </div>
+              </div>
             </li>
           ))}
         </ul>

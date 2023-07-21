@@ -10,7 +10,7 @@ interface Geolocation {
   ) => void;
 }
 
-interface Position {
+export interface Position {
   coords: Coordinates;
   timestamp: number;
 }
@@ -28,7 +28,7 @@ interface Coordinates {
 type PositionCallback = (position: Position) => void;
 type PositionErrorCallback = (error: PositionError) => void;
 
-interface PositionError {
+export interface PositionError {
   code: number;
   message: string;
   PERMISSION_DENIED: number;
@@ -42,8 +42,16 @@ interface PositionOptions {
   timeout?: number;
 }
 
+type Photo = {
+  height: number;
+  html_attributions: string[];
+  photo_reference: string;
+  width: number;
+};
+
 // Restaurant interface
-interface Restaurant {
+export interface Restaurant {
   name: string;
   vicinity: string;
+  photos: Photo[];
 }

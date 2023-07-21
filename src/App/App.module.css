@@ -1,9 +1,9 @@
 .mainContainer {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* overflow-y: scroll; */
   padding: 20px;
 }
 
@@ -13,28 +13,20 @@
   color: #eeff00;
 }
 
-.restaurantsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin: 20px;
-  max-width: 1000px;
-  max-height: 500px;
-}
-
 .buttonsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-bottom: 30px;
 }
 
-.restaurantsContainer > * {
-  margin: 5px;
+.restaurantsContainer {
+  max-width: 1000px;
+  max-height: 1500px;
 }
 
-.seeNearestRestaurantsButton {
+.buttonDefault {
   background-color: rgb(233, 210, 30);
   margin-top: 20px;
   margin-right: 20px;
@@ -43,25 +35,7 @@
   border: 2px solid #000000;
 }
 
-.seeNearestRestaurantsButtonHighlighted {
-  background-color: rgb(30, 203, 233);
-  margin-top: 20px;
-  margin-right: 20px;
-  height: 30px;
-  border-radius: 10px;
-  border: 2px solid #000000;
-}
-
-.seeRecommendedRestaurantsButton {
-  background-color: rgb(233, 210, 30);
-  margin-top: 20px;
-  margin-right: 20px;
-  height: 30px;
-  border-radius: 10px;
-  border: 2px solid #000000;
-}
-
-.seeRecommendedRestaurantsButtonHighlighted {
+.buttonHighlight {
   background-color: rgb(30, 203, 233);
   margin-top: 20px;
   margin-right: 20px;
