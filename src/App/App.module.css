@@ -9,6 +9,8 @@
 
 .title {
   margin-bottom: 30px;
+  font-size: 75px; /* Change the value to adjust the font size */
+  color: #eeff00;
 }
 
 .restaurantsContainer {
@@ -21,6 +23,13 @@
   max-height: 500px;
 }
 
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
 .restaurantsContainer > * {
   margin: 5px;
 }
@@ -28,4 +37,35 @@
 .seeNearestRestaurantsButton {
   background-color: rgb(233, 210, 30);
   margin-top: 20px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+.seeNearestRestaurantsButtonHighlighted {
+  background-color: rgb(30, 203, 233);
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+.seeRecommendedRestaurantsButton {
+  background-color: rgb(233, 210, 30);
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+}
+
+.seeRecommendedRestaurantsButtonHighlighted {
+  background-color: rgb(30, 203, 233);
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #000000;
 }

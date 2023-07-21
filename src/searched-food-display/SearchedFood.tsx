@@ -5,9 +5,10 @@ import axios from "axios";
 interface Props {
   searchString: string;
   location: {latitude: number; longitude: number};
+  onClickClose: () => void;
 }
 
-const SearchedFood = ({searchString, location}: Props) => {
+const SearchedFood = ({searchString, location, onClickClose}: Props) => {
   //Set variable for nearest restaurants
   interface Restaurant {
     name: string;
@@ -58,8 +59,11 @@ const SearchedFood = ({searchString, location}: Props) => {
   return (
     <>
       <div className={styles.searchedRestaurantContainer}>
+        <button onClick={onClickClose} className={styles.closeButton}>
+          Close
+        </button>
         <h3>Restaurants nearest to you based on your search: {searchString}</h3>
-        {searchString == "" ? (
+        {searchString == "" || searchString == " Search for a restaurant" ? (
           <h3>You did not include a search term yet</h3>
         ) : restaurants.length == 0 ? (
           <p>There were no matching restaurants found!</p>

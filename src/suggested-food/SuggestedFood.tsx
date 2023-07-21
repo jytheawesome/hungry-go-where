@@ -8,6 +8,7 @@ import {getExistingQueries, getCookie} from "../cookie";
 // Props for component
 interface Props {
   location: {latitude: number; longitude: number};
+  onClickClose: () => void;
 }
 
 //Define function to search for restaurants based on past searches from backend server
@@ -55,7 +56,7 @@ const fetchSuggestedRestaurants = async (
 };
 
 // Component
-const SuggestedFood = ({location}: Props) => {
+const SuggestedFood = ({location, onClickClose}: Props) => {
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   //const [pastQueries] = useState<string[]>(getExistingQueries());
@@ -65,6 +66,7 @@ const SuggestedFood = ({location}: Props) => {
     const latitude = location.latitude;
     const longitude = location.longitude;
     const pastQueriesResult = getExistingQueries();
+    console.log(pastQueriesResult);
     if (latitude == 0 || longitude == 0) return;
 
     fetchSuggestedRestaurants(pastQueriesResult, latitude, longitude)
@@ -82,8 +84,10 @@ const SuggestedFood = ({location}: Props) => {
   return (
     <>
       <div className={styles.suggestedRestaurantsContainer}>
+        <button onClick={onClickClose} className={styles.closeButton}>
+          Close
+        </button>
         <h3>Suggested restaurants based on your past searches: </h3>
-        <h3>{getCookie("searchQueries")}</h3>
         {restaurants.length == 0 ? (
           <h3> You do not have any past searches. </h3>
         ) : (

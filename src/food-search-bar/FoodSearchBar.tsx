@@ -9,7 +9,7 @@ interface Props {
 const FoodSearchBar = ({onSubmitSearch}: Props) => {
   //const searchStringRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
-    "Search for a restaurant"
+    " Search for a restaurant"
   );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +17,7 @@ const FoodSearchBar = ({onSubmitSearch}: Props) => {
   };
 
   const handleInputClick = () => {
-    if (searchText === "Search for a restaurant") {
+    if (searchText === " Search for a restaurant") {
       setSearchText("");
     }
   };
@@ -29,21 +29,20 @@ const FoodSearchBar = ({onSubmitSearch}: Props) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className={styles.searchBar}>
-        <div className="mb-3">
+      <form onSubmit={handleSubmit}>
+        <div className={styles.searchContainer}>
           <input
-            //ref={searchStringRef}
             type="text"
             value={searchText}
-            className={"form-control"}
+            className={`form-control ${styles.searchBar}`}
             id="searchInput"
             onChange={handleInputChange}
             onClick={handleInputClick}
           />
+          <button type="submit" className={styles.searchButton}>
+            Search
+          </button>
         </div>
-        <button type="submit" className={styles.searchButton}>
-          Search
-        </button>
       </form>
     </>
   );

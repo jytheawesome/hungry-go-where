@@ -4,10 +4,12 @@ import styles from "./NearestFood.module.css";
 
 interface Props {
   userLocation: {latitude: number; longitude: number};
+  onClickClose: () => void;
 }
 
-const NearestFood = ({userLocation}: Props) => {
+const NearestFood = ({userLocation, onClickClose}: Props) => {
   // Declarations
+  console.log("Coordinates for nearest restaurants: " + userLocation);
 
   //Set variable for nearest restaurants
   interface Restaurant {
@@ -60,10 +62,10 @@ const NearestFood = ({userLocation}: Props) => {
   return (
     <>
       <div className={styles.nearestRestaurantsContainer}>
-        <h3>
-          Your coordinates are {userLocation.latitude} and{" "}
-          {userLocation.longitude}. Restaurants that are closest to you:
-        </h3>
+        <button onClick={onClickClose} className={styles.closeButton}>
+          Close
+        </button>
+        <h3>Restaurants that are closest to you:</h3>
         <ul>
           {restaurants.map((restaurant) => (
             <li key={`${restaurant.name}-${restaurant.vicinity}`}>
