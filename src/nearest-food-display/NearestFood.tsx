@@ -102,16 +102,16 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
               <h3 className={styles.descriptionContainer}>
                 <img
                   className={styles.locationIcon}
-                  src="../../public/location.png"
-                  alt="Restaurant Photo"
+                  src="/location.png"
+                  alt="../../public/location.png"
                 />
                 {restaurant.vicinity}
               </h3>
             </div>
             <img
               className={styles.photoContainer}
-              src="../../public/restaurant.jpg"
-              alt="Restaurant Photo"
+              src="/restaurant.jpg"
+              alt="../../public/restaurant.jpg"
             />
           </div>
         ))}
