@@ -10,7 +10,12 @@ interface Props {
 
 const NearestFood = ({ userLocation, onClickClose }: Props) => {
   // Declarations
-  console.log("Coordinates for nearest restaurants: " + userLocation);
+  console.log(
+    "Coordinates for nearest restaurants: " +
+      userLocation.latitude +
+      " " +
+      userLocation.longitude
+  );
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
@@ -21,6 +26,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   ): Promise<any[]> => {
     const url = `https://hungry-go-where-api.vercel.app/api/nearby-restaurants?latitude=${latitude}&longitude=${longitude}`;
     try {
+      console.log(url);
       const response = await axios.get(url);
       const results = response.data.results;
       console.log(
