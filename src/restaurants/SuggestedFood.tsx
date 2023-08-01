@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import styles from "./SuggestedFood.module.css";
 import axios from "axios";
 import { getExistingQueries } from "../cookie";
 import { Restaurant } from "../custom";
+import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 
 // declarations
 
@@ -84,24 +84,15 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 
   return (
     <>
-      <div className={styles.suggestedRestaurantsContainer}>
-        <button onClick={onClickClose} className={styles.closeButton}>
-          Close
-        </button>
-        <h3>Suggested restaurants based on your past searches: </h3>
-        {restaurants.length == 0 ? (
-          <h3> You do not have any past searches. </h3>
-        ) : (
-          <ul>
-            {restaurants.map((restaurant) => (
-              <li key={`${restaurant.name}-${restaurant.vicinity}`}>
-                <h3>{restaurant.name}</h3>
-                <p>{restaurant.vicinity}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {restaurants.length == 0 ? (
+        <p>No restaurants.</p>
+      ) : (
+        <RestaurantDisplay
+          onClickClose={onClickClose}
+          headerMessage="Suggested restaurants based on your past searches: "
+          restaurants={[]}
+        />
+      )}
     </>
   );
 };

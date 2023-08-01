@@ -1,12 +1,12 @@
-import {useState, FormEvent} from "react";
+import { useState, FormEvent } from "react";
 import styles from "./FoodSearchBar.module.css";
-import {updateCookie} from "../cookie";
+import { updateCookie } from "../../cookie";
 
 interface Props {
   onSubmitSearch: (searchString: string) => void;
 }
 
-const FoodSearchBar = ({onSubmitSearch}: Props) => {
+const FoodSearchBar = ({ onSubmitSearch }: Props) => {
   //const searchStringRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     " Search for a restaurant"

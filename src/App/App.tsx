@@ -1,16 +1,19 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import styles from "./App.module.css";
-import NearestFood from "../nearest-food-display/NearestFood";
-import FoodSearchBar from "../food-search-bar/FoodSearchBar";
-import SearchedFood from "../searched-food-display/SearchedFood";
-import SuggestedFood from "../suggested-food/SuggestedFood";
-import {Position, PositionError} from "../custom";
+import NearestFood from "../restaurants/NearestFood";
+import FoodSearchBar from "../restaurants/food-search-bar/FoodSearchBar";
+import SearchedFood from "../restaurants/SearchedFood";
+import SuggestedFood from "../restaurants/SuggestedFood";
+import { Position, PositionError } from "../custom";
 
 function App() {
   //Declarations
 
   // user location
-  const [userLocation, setUserLocation] = useState({longitude: 0, latitude: 0});
+  const [userLocation, setUserLocation] = useState({
+    longitude: 0,
+    latitude: 0,
+  });
   // user search keywords
   const [searchString, setSearchString] = useState("");
   // Restaurant display view
@@ -47,8 +50,8 @@ function App() {
   // define success function for getting user location
   function successCallback(position: Position) {
     console.log("Successfully retrieved user location.");
-    const {latitude, longitude} = position.coords;
-    setUserLocation({longitude, latitude});
+    const { latitude, longitude } = position.coords;
+    setUserLocation({ longitude, latitude });
   }
 
   // define failure function for getting user location
