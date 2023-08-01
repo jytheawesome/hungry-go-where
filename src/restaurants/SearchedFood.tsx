@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+//import { useEffect, useState } from "react";
+//import axios from "axios";
+//import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
+// import { Restaurant } from "../custom";
+
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 
 interface Props {
@@ -9,11 +12,10 @@ interface Props {
 }
 
 const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
+  console.log("Coordinates for searched restaurants: " + location);
+
+  /*
   //Set variable for nearest restaurants
-  interface Restaurant {
-    name: string;
-    vicinity: string;
-  }
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   //Define function to search for restaurants based on keyword from backend server
@@ -55,7 +57,7 @@ const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
         );
       });
   }, [searchString]);
-
+*/
   return (
     <>
       {searchString == "" || searchString == " Search for a restaurant" ? (
