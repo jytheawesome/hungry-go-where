@@ -1,13 +1,38 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./NearestFood.module.css";
-import {Restaurant} from "../custom";
+import styles from "../restaurant-display-styles/RestaurantDisplay.module.css";
+import { Restaurant, dummyRestaurant } from "../custom";
 
 interface Props {
-  userLocation: {latitude: number; longitude: number};
+  userLocation: { latitude: number; longitude: number };
   onClickClose: () => void;
 }
-const NearestFood = ({userLocation, onClickClose}: Props) => {
+
+const dummyRestaurants: dummyRestaurant[] = [
+  {
+    name: "Hokkien Mee",
+    vicinity:
+      "Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Chicken Rice",
+    vicinity: "Choa Chu Kang Street 21",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Buddies and Hoagies",
+    vicinity: "Beauty World",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Beauty in a pot",
+    vicinity: "Jewel Changi Airport",
+    photo: "../restaurant.jpg",
+  },
+];
+
+const NearestFood = ({ userLocation, onClickClose }: Props) => {
   // Declarations
   console.log("Coordinates for nearest restaurants: " + userLocation);
 
@@ -64,10 +89,36 @@ const NearestFood = ({userLocation, onClickClose}: Props) => {
   return (
     <>
       <div className={styles.nearestRestaurantsContainer}>
-        <button onClick={onClickClose} className={styles.closeButton}>
-          Close
-        </button>
-        <h3>Restaurants that are closest to you:</h3>
+        <div className={styles.headerAndCloseButtonContainer}>
+          <h3 className={styles.header}>
+            Restaurants that are closest to you:
+          </h3>
+          <button onClick={onClickClose} className={styles.closeButton}>
+            Close
+          </button>
+        </div>
+        {dummyRestaurants.map((restaurant) => (
+          <div className={styles.restaurantContainer}>
+            <div className={styles.nameAndDescriptionContainer}>
+              <h2 className={styles.nameContainer}>{restaurant.name}</h2>
+              <h3 className={styles.descriptionContainer}>
+                <img
+                  className={styles.locationIcon}
+                  src="../../public/location.png"
+                  alt="Restaurant Photo"
+                />
+                {restaurant.vicinity}
+              </h3>
+            </div>
+            <img
+              className={styles.restaurantPhotoContainer}
+              src="../../public/restaurant.jpg"
+              alt="Restaurant Photo"
+            />
+          </div>
+        ))}
+
+        {/*
         <ul>
           {restaurants.map((restaurant) => (
             <li key={`${restaurant.name}-${restaurant.vicinity}`}>
@@ -91,6 +142,7 @@ const NearestFood = ({userLocation, onClickClose}: Props) => {
             </li>
           ))}
         </ul>
+        */}
       </div>
     </>
   );

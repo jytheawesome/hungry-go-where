@@ -55,3 +55,10 @@ export interface Restaurant {
   vicinity: string;
   photos: Photo[];
 }
+
+// Dummy Restaurant interface
+export interface dummyRestaurant {
+  name: string;
+  vicinity: string;
+  photo: string;
+}
