@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import styles from "./FoodSearchBar.module.css";
-import { updateCookie } from "../../cookie";
+import { updateCookie } from "../../cookies/cookie";
 
 interface Props {
   onSubmitSearch: (searchString: string) => void;

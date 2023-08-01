@@ -4,7 +4,7 @@ import NearestFood from "../restaurants/NearestFood";
 import FoodSearchBar from "../restaurants/food-search-bar/FoodSearchBar";
 import SearchedFood from "../restaurants/SearchedFood";
 import SuggestedFood from "../restaurants/SuggestedFood";
-import { Position, PositionError } from "../custom";
+import { Position, PositionError } from "../custom-ds/custom";
 
 function App() {
   //Declarations

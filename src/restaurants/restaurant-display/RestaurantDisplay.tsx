@@ -1,6 +1,7 @@
-import { dummyRestaurant } from "../../custom";
+import { Restaurant } from "../../custom-ds/custom";
 import styles from "./RestaurantDisplay.module.css";
 
+/*
 const dummyRestaurants: dummyRestaurant[] = [
   {
     name: "Hokkien Mee",
@@ -24,15 +25,16 @@ const dummyRestaurants: dummyRestaurant[] = [
     photo: "../restaurant.jpg",
   },
 ];
+*/
 
 interface Props {
-  restaurants: dummyRestaurant[];
+  restaurants: Restaurant[];
   headerMessage: string;
   onClickClose: () => void;
 }
 
 const RestaurantDisplay = ({
-  //restaurants,
+  restaurants,
   onClickClose,
   headerMessage,
 }: Props) => {
@@ -44,7 +46,7 @@ const RestaurantDisplay = ({
           Close
         </button>
       </div>
-      {dummyRestaurants.map((restaurant) => (
+      {restaurants.map((restaurant) => (
         <div className={styles.restaurantContainer}>
           <div className={styles.nameAndDescriptionContainer}>
             <h2 className={styles.nameContainer}>{restaurant.name}</h2>

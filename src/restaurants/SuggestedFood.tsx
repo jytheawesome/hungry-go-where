@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getExistingQueries } from "../cookie";
-import { Restaurant } from "../custom";
+import { getExistingQueries } from "../cookies/cookie";
+import { Restaurant } from "../custom-ds/custom";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 
 // declarations

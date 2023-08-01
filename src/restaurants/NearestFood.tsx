@@ -1,7 +1,7 @@
-// import { useState, useEffect } from "react";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
-// import { Restaurant, dummyRestaurant } from "../custom";
+import { Restaurant } from "../custom-ds/custom";
 
 interface Props {
   userLocation: { latitude: number; longitude: number };
@@ -11,10 +11,8 @@ interface Props {
 const NearestFood = ({ userLocation, onClickClose }: Props) => {
   // Declarations
   console.log("Coordinates for nearest restaurants: " + userLocation);
-  /*
+
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  //const apiKey = process.env.maps_api;
-  const apiKey = "AIzaSyByYmhlaUy0wx7xIb8J50vNAER2MPF8jns";
 
   // Function to fetch nearest restaurants from backend server
   const fetchNearbyRestaurants = async (
@@ -57,13 +55,12 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
         console.error("Error finding nearest restaurants:", error);
       });
   }, [userLocation]);
-  */
 
   return (
     <RestaurantDisplay
       onClickClose={onClickClose}
       headerMessage="Restaurants that are closest to you: "
-      restaurants={[]}
+      restaurants={restaurants}
     />
   );
 };
