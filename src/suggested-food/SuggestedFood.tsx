@@ -1,13 +1,14 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import styles from "./SuggestedFood.module.css";
 import axios from "axios";
-import {getExistingQueries} from "../cookie";
+import { getExistingQueries } from "../cookie";
+import { Restaurant } from "../custom";
 
 // declarations
 
 // Props for component
 interface Props {
-  location: {latitude: number; longitude: number};
+  location: { latitude: number; longitude: number };
   onClickClose: () => void;
 }
 
@@ -56,7 +57,7 @@ const fetchSuggestedRestaurants = async (
 };
 
 // Component
-const SuggestedFood = ({location, onClickClose}: Props) => {
+const SuggestedFood = ({ location, onClickClose }: Props) => {
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   //const [pastQueries] = useState<string[]>(getExistingQueries());

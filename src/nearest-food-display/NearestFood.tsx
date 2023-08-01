@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+// import { useState, useEffect } from "react";
+// import axios from "axios";
 import styles from "../restaurant-display-styles/RestaurantDisplay.module.css";
-import { Restaurant, dummyRestaurant } from "../custom";
+import { dummyRestaurant } from "../custom";
+// import { Restaurant, dummyRestaurant } from "../custom";
 
 interface Props {
   userLocation: { latitude: number; longitude: number };
@@ -35,12 +36,7 @@ const dummyRestaurants: dummyRestaurant[] = [
 const NearestFood = ({ userLocation, onClickClose }: Props) => {
   // Declarations
   console.log("Coordinates for nearest restaurants: " + userLocation);
-
-  // //Set variable for nearest restaurants
-  // interface Restaurant {
-  //   name: string;
-  //   vicinity: string;
-  // }
+  /*
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   //const apiKey = process.env.maps_api;
   const apiKey = "AIzaSyByYmhlaUy0wx7xIb8J50vNAER2MPF8jns";
@@ -73,6 +69,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   //   });
 
   //Fetch nearby restaurants.
+
   useEffect(() => {
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
@@ -85,10 +82,11 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
         console.error("Error finding nearest restaurants:", error);
       });
   }, [userLocation]);
+  */
 
   return (
     <>
-      <div className={styles.nearestRestaurantsContainer}>
+      <div className={styles.restaurantsContainer}>
         <div className={styles.headerAndCloseButtonContainer}>
           <h3 className={styles.header}>
             Restaurants that are closest to you:
@@ -111,7 +109,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
               </h3>
             </div>
             <img
-              className={styles.restaurantPhotoContainer}
+              className={styles.photoContainer}
               src="../../public/restaurant.jpg"
               alt="Restaurant Photo"
             />
