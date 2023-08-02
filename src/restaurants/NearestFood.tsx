@@ -4,7 +4,6 @@ import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
 import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
-//import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 interface Props {
   userLocation: { latitude: number; longitude: number };
@@ -55,6 +54,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   //Fetch nearby restaurants.
 
   useEffect(() => {
+    toggleSeeNearestFood(false);
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
     if (latitude == 0 || longitude == 0) return;
