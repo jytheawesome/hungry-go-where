@@ -61,3 +61,12 @@
 .photoContainer {
   padding: 20px;
 }
+
+.noRestaurantsDisplay {
+  display: flex;
+  flex-direction: column;
+  padding: 45px;
+  border-radius: 20px;
+  align-items: center;
+  background-color: rgb(245, 210, 11);
+}

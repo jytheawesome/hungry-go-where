@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 interface Props {
   searchString: string;
@@ -62,8 +63,10 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   return (
     <>
-      {searchString == "" || searchString == " Search for a restaurant" ? (
-        <p>No restaurants.</p>
+      {searchString == "" ||
+      searchString == " Search for a restaurant" ||
+      restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! Your search did not yield any restaurants." />
       ) : (
         <RestaurantDisplay
           onClickClose={onClickClose}

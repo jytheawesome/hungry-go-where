@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 interface Props {
   userLocation: { latitude: number; longitude: number };
@@ -63,11 +64,17 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   }, [userLocation]);
 
   return (
-    <RestaurantDisplay
-      onClickClose={onClickClose}
-      headerMessage="Restaurants that are closest to you: "
-      restaurants={restaurants}
-    />
+    <>
+      {restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! There are no nearest restaurants near you at the moment." />
+      ) : (
+        <RestaurantDisplay
+          onClickClose={onClickClose}
+          headerMessage="Restaurants that are closest to you: "
+          restaurants={restaurants}
+        />
+      )}
+    </>
   );
 };
 

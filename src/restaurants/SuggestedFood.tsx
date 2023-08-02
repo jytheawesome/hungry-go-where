@@ -3,6 +3,7 @@ import axios from "axios";
 import { getExistingQueries } from "../cookies/cookie";
 import { Restaurant } from "../custom-ds/custom";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 // declarations
 
@@ -84,8 +85,10 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 
   return (
     <>
-      {restaurants.length == 0 ? (
-        <p>No restaurants.</p>
+      {getExistingQueries().length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
+      ) : restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! There are no restaurants near you based on your past searches." />
       ) : (
         <RestaurantDisplay
           onClickClose={onClickClose}
