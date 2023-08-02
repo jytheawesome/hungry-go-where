@@ -85,19 +85,20 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 
   return (
     <>
-      {getExistingQueries().length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
-      ) : restaurants.length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! There are no restaurants near you based on your past searches." />
-      ) : (
-        <RestaurantDisplay
-          onClickClose={onClickClose}
-          headerMessage="Suggested restaurants based on your past searches: "
-          restaurants={restaurants}
-        />
-      )}
+      <RestaurantDisplay
+        onClickClose={onClickClose}
+        headerMessage="Suggested restaurants based on your past searches: "
+        restaurants={restaurants}
+      />
     </>
   );
 };
 
 export default SuggestedFood;
+/*
+ {getExistingQueries().length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
+      ) : restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! There are no restaurants near you based on your past searches." />
+      ) : (
+*/

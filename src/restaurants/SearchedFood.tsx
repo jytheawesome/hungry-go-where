@@ -63,19 +63,21 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   return (
     <>
-      {searchString == "" ||
-      searchString == " Search for a restaurant" ||
-      restaurants.length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! Your search did not yield any restaurants." />
-      ) : (
-        <RestaurantDisplay
-          onClickClose={onClickClose}
-          headerMessage={`Restaurants based on your search term: ${searchString}`}
-          restaurants={restaurants}
-        />
-      )}
+      <RestaurantDisplay
+        onClickClose={onClickClose}
+        headerMessage={`Restaurants based on your search term: ${searchString}`}
+        restaurants={restaurants}
+      />
     </>
   );
 };
 
 export default SearchedFood;
+
+/*
+     {searchString == "" ||
+      searchString == " Search for a restaurant" ||
+      restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! Your search did not yield any restaurants." />
+      ) : (
+*/
