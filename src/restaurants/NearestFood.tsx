@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
 //import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 interface Props {
@@ -17,6 +19,8 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
       " " +
       userLocation.longitude
   );
+
+  const [seeNearestFood, toggleSeeNearestFood] = useState(false);
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
@@ -57,6 +61,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
     fetchNearbyRestaurants(latitude, longitude)
       .then((data) => {
         setRestaurants(data);
+        toggleSeeNearestFood(true);
       })
       .catch((error) => {
         console.error("Error finding nearest restaurants:", error);
@@ -64,11 +69,19 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   }, [userLocation]);
 
   return (
-    <RestaurantDisplay
-      onClickClose={onClickClose}
-      headerMessage="Restaurants that are closest to you: "
-      restaurants={restaurants}
-    />
+    <>
+      {!seeNearestFood ? (
+        <SearchingForRestaurants />
+      ) : restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! We could not find any restaurants." />
+      ) : (
+        <RestaurantDisplay
+          onClickClose={onClickClose}
+          headerMessage="Restaurants that are closest to you: "
+          restaurants={restaurants}
+        />
+      )}
+    </>
   );
   {
     /*

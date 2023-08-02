@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
-//import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
 
 interface Props {
   searchString: string;
@@ -20,6 +21,7 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   //Set variable for nearest restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);
 
   //Define function to search for restaurants based on keyword from backend server
   const fetchSearchedRestaurants = async (
@@ -46,12 +48,14 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   //Fetch searched restaurants
   useEffect(() => {
+    toggleSeeSearchedFood(false);
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
 
     fetchSearchedRestaurants(searchString, latitude, longitude)
       .then((data) => {
         setRestaurants(data);
+        toggleSeeSearchedFood(true);
       })
       .catch((error) => {
         console.error(
@@ -63,11 +67,19 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   return (
     <>
-      <RestaurantDisplay
-        onClickClose={onClickClose}
-        headerMessage={`Restaurants based on your search term: ${searchString}`}
-        restaurants={restaurants}
-      />
+      {!seeSearchedFood ? (
+        <SearchingForRestaurants />
+      ) : searchString == "" || searchString == " Search for a restaurant" ? (
+        <NoRestaurantsDisplay displayMessage="Oops! Your search bar seems to be empty." />
+      ) : restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! We could not find any restaurants." />
+      ) : (
+        <RestaurantDisplay
+          onClickClose={onClickClose}
+          headerMessage={`Restaurants based on your search term: ${searchString} `}
+          restaurants={restaurants}
+        />
+      )}
     </>
   );
 };

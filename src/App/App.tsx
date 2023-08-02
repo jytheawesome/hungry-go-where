@@ -20,7 +20,6 @@ function App() {
   const [seeNearestFood, toggleSeeNearestFood] = useState(false);
   const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
   const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);
-  // const [seeWaitingMessage, toggleSeeWaitingMessage] = useState(false);
 
   const restaurantDisplaySelector = (selector: string) => {
     if (selector == "Nearest") {

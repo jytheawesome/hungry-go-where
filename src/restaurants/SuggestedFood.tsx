@@ -3,7 +3,8 @@ import axios from "axios";
 import { getExistingQueries } from "../cookies/cookie";
 import { Restaurant } from "../custom-ds/custom";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
-//import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
 
 // declarations
 
@@ -61,10 +62,13 @@ const fetchSuggestedRestaurants = async (
 const SuggestedFood = ({ location, onClickClose }: Props) => {
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
+
   //const [pastQueries] = useState<string[]>(getExistingQueries());
 
   //Fetch suggested restaurants
   useEffect(() => {
+    toggleSeeSuggestedFood(false);
     const latitude = location.latitude;
     const longitude = location.longitude;
     const pastQueriesResult = getExistingQueries();
@@ -74,6 +78,7 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
     fetchSuggestedRestaurants(pastQueriesResult, latitude, longitude)
       .then((data) => {
         setRestaurants(data);
+        toggleSeeSuggestedFood(true);
       })
       .catch((error) => {
         console.error(
@@ -85,11 +90,19 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 
   return (
     <>
-      <RestaurantDisplay
-        onClickClose={onClickClose}
-        headerMessage="Suggested restaurants based on your past searches: "
-        restaurants={restaurants}
-      />
+      {!seeSuggestedFood ? (
+        <SearchingForRestaurants />
+      ) : getExistingQueries().length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
+      ) : restaurants.length == 0 ? (
+        <NoRestaurantsDisplay displayMessage="Oops! We could not find any restaurants." />
+      ) : (
+        <RestaurantDisplay
+          onClickClose={onClickClose}
+          headerMessage="Restaurants based on your past searches: "
+          restaurants={restaurants}
+        />
+      )}
     </>
   );
 };
