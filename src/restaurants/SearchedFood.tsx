@@ -1,20 +1,22 @@
-//import { useEffect, useState } from "react";
-//import axios from "axios";
-//import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
-// import { Restaurant } from "../custom";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
+import { Restaurant } from "../custom-ds/custom";
 
 interface Props {
   searchString: string;
-  location: { latitude: number; longitude: number };
+  userLocation: { latitude: number; longitude: number };
   onClickClose: () => void;
 }
 
-const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
-  console.log("Coordinates for searched restaurants: " + location);
+const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
+  console.log(
+    "Coordinates for searched restaurants: " +
+      userLocation.latitude +
+      " " +
+      userLocation.longitude
+  );
 
-  /*
   //Set variable for nearest restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
@@ -43,8 +45,8 @@ const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
 
   //Fetch searched restaurants
   useEffect(() => {
-    const latitude = location.latitude;
-    const longitude = location.longitude;
+    const latitude = userLocation.latitude;
+    const longitude = userLocation.longitude;
 
     fetchSearchedRestaurants(searchString, latitude, longitude)
       .then((data) => {
@@ -57,7 +59,7 @@ const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
         );
       });
   }, [searchString]);
-*/
+
   return (
     <>
       {searchString == "" || searchString == " Search for a restaurant" ? (
@@ -66,7 +68,7 @@ const SearchedFood = ({ searchString, location, onClickClose }: Props) => {
         <RestaurantDisplay
           onClickClose={onClickClose}
           headerMessage={`Restaurants based on your search term: ${searchString}`}
-          restaurants={[]}
+          restaurants={restaurants}
         />
       )}
     </>

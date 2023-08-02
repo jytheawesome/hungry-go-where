@@ -47,7 +47,7 @@ export function areStringsSimilar(str1: string, str2: string): boolean {
 
 // Function to add a string to the array, considering similarity and size constraints
 export function addStringToArray(existingQueries: string[], newItem: string) {
-  const MAX_ITEMS = 5;
+  const MAX_ITEMS = 3;
   const index = existingQueries.findIndex((query) =>
     areStringsSimilar(query, newItem)
   );
@@ -56,11 +56,12 @@ export function addStringToArray(existingQueries: string[], newItem: string) {
     // If a similar string exists, replace it with the new item
     existingQueries[index] = newItem;
   } else {
-    if (existingQueries.length === MAX_ITEMS) {
-      // If the array has reached the maximum number of items, remove the first item
+    while (existingQueries.length >= MAX_ITEMS) {
+      // If the array has reached the maximum number of items, remove the items until
+      // we have (MAX_ITEMS - 1) length.
       existingQueries.shift();
     }
-    // Add the current item to the back of the array
+    // Add the current item to the back of the array, now we have (MAX_ITEMS) length
     existingQueries.push(newItem);
   }
 }

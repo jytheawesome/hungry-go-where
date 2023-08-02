@@ -90,7 +90,7 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
         <RestaurantDisplay
           onClickClose={onClickClose}
           headerMessage="Suggested restaurants based on your past searches: "
-          restaurants={[]}
+          restaurants={restaurants}
         />
       )}
     </>

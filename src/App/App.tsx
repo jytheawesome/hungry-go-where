@@ -103,7 +103,7 @@ function App() {
             <SearchedFood
               onClickClose={() => restaurantDisplaySelector("Close")}
               searchString={searchString}
-              location={userLocation}
+              userLocation={userLocation}
             />
           )}
           {seeSuggestedFood && (
