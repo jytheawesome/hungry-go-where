@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
-import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+//import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 interface Props {
   searchString: string;

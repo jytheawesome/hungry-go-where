@@ -3,7 +3,7 @@ import axios from "axios";
 import { getExistingQueries } from "../cookies/cookie";
 import { Restaurant } from "../custom-ds/custom";
 import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
-import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
+//import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
 
 // declarations
 
