@@ -7,10 +7,8 @@ interface Props {
   onClickClose: () => void;
 }
 
-const apiKey = "AIzaSyBhWuoawqOBQJxIP86bdnc7_ChEAB5i9fw";
-const key = process.env.REACT_APP_KEY || apiKey;
+const key = process.env.REACT_APP_KEY;
 
-console.log(apiKey);
 console.log(process.env.REACT_APP_KEY);
 
 const RestaurantsDisplay = ({
