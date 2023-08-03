@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { getExistingQueries } from "../cookies/cookie";
-import { Restaurant } from "../custom-ds/custom";
-import RestaurantDisplay from "./restaurants-display/RestaurantDisplay";
-import NoRestaurantsDisplay from "./restaurants-display/noRestaurantsDisplay";
-import SearchingIndicator from "./restaurants-display/SearchingIndicator";
+import { getExistingQueries } from "../../cookies/cookie";
+import { Restaurant } from "../../custom-ds/custom";
+import RestaurantDisplay from "../restaurants-display/RestaurantsDisplay";
+import NoRestaurantsFound from "../restaurants-display/NoRestaurantsFound";
+import SearchingIndicator from "../restaurants-display/SearchingRestaurantsIndicator";
 
 // declarations
 
@@ -91,9 +91,9 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
       {!seeSuggestedFood ? (
         <SearchingIndicator />
       ) : getExistingQueries().length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
+        <NoRestaurantsFound displayMessage="Oops! It appears you do not have any past searches." />
       ) : restaurants.length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! We could not find any restaurants." />
+        <NoRestaurantsFound displayMessage="Oops! We could not find any restaurants." />
       ) : (
         <RestaurantDisplay
           onClickClose={onClickClose}

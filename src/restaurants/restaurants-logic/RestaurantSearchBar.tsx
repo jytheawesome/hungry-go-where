@@ -1,7 +1,7 @@
 /* Food search bar is in charge of getting user search query. */
 
 import { useState, FormEvent } from "react";
-import styles from "./RestaurantSearchBar.module.css";
+import styles from "../styles/RestaurantSearchBar.module.css";
 import { updateCookie } from "../../cookies/cookie";
 
 interface Props {

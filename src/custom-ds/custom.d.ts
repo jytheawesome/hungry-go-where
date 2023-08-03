@@ -1,5 +1,5 @@
 /*
-  Custom interfaces.
+  Custom interfaces and dumumy data.
 */
 
 interface Navigator {
@@ -64,3 +64,27 @@ export interface dummyRestaurant {
   vicinity: string;
   photo: string;
 }
+
+export const dummyRestaurants: dummyRestaurant[] = [
+  {
+    name: "Hokkien Mee",
+    vicinity:
+      "Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Chicken Rice",
+    vicinity: "Choa Chu Kang Street 21",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Buddies and Hoagies",
+    vicinity: "Beauty World",
+    photo: "../restaurant.jpg",
+  },
+  {
+    name: "Beauty in a pot",
+    vicinity: "Jewel Changi Airport",
+    photo: "../restaurant.jpg",
+  },
+];

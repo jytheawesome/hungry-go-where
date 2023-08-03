@@ -1,31 +1,5 @@
 import { Restaurant } from "../../custom-ds/custom";
-import styles from "./RestaurantsDisplay.module.css";
-
-/*
-const dummyRestaurants: dummyRestaurant[] = [
-  {
-    name: "Hokkien Mee",
-    vicinity:
-      "Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil Jalan Jurong Kechil",
-    photo: "../restaurant.jpg",
-  },
-  {
-    name: "Chicken Rice",
-    vicinity: "Choa Chu Kang Street 21",
-    photo: "../restaurant.jpg",
-  },
-  {
-    name: "Buddies and Hoagies",
-    vicinity: "Beauty World",
-    photo: "../restaurant.jpg",
-  },
-  {
-    name: "Beauty in a pot",
-    vicinity: "Jewel Changi Airport",
-    photo: "../restaurant.jpg",
-  },
-];
-*/
+import styles from "../styles/RestaurantsDisplay.module.css";
 
 interface Props {
   restaurants: Restaurant[];
@@ -33,7 +7,7 @@ interface Props {
   onClickClose: () => void;
 }
 
-const RestaurantDisplay = ({
+const RestaurantsDisplay = ({
   restaurants,
   onClickClose,
   headerMessage,
@@ -70,7 +44,7 @@ const RestaurantDisplay = ({
   );
 };
 
-export default RestaurantDisplay;
+export default RestaurantsDisplay;
 
 /*
     <ul>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
-import NearestFood from "../restaurants/NearestRestaurants";
-import FoodSearchBar from "../restaurants/food-search-bar/RestaurantSearchBar";
-import SearchedFood from "../restaurants/SearchedRestaurants";
-import SuggestedFood from "../restaurants/SuggestedRestaurants";
+import NearestFood from "../restaurants/restaurants-logic/NearestRestaurants";
+import FoodSearchBar from "../restaurants/restaurants-logic/RestaurantSearchBar";
+import SearchedFood from "../restaurants/restaurants-logic/SearchedRestaurants";
+import SuggestedFood from "../restaurants/restaurants-logic/SuggestedRestaurants";
 import { Position, PositionError } from "../custom-ds/custom";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     longitude: 0,
     latitude: 0,
   });
+
   // Declare user search word variable
   const [searchString, setSearchString] = useState("");
 

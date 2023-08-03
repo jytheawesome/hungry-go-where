@@ -62,7 +62,7 @@
   padding: 20px;
 }
 
-.noRestaurantsDisplay {
+.noRestaurantsFoundMessage {
   display: flex;
   flex-direction: column;
   padding: 45px;
