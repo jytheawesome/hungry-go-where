@@ -8,7 +8,10 @@ interface Props {
 }
 
 const apiKey = "AIzaSyBhWuoawqOBQJxIP86bdnc7_ChEAB5i9fw";
+const key = process.env.REACT_APP_KEY;
+
 console.log(apiKey);
+console.log(key);
 
 const RestaurantsDisplay = ({
   restaurants,
@@ -40,7 +43,7 @@ const RestaurantsDisplay = ({
             src={
               restaurant.photos
                 ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
-            &key=${apiKey}`
+            &key=${key}`
                 : "/imagePlaceHolder.png"
             }
           />
