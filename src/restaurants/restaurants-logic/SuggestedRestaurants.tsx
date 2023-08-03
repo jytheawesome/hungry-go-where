@@ -59,14 +59,15 @@ const fetchSuggestedRestaurants = async (
 };
 
 // Component
-const SuggestedFood = ({ location, onClickClose }: Props) => {
+const SuggestedRestaurants = ({ location, onClickClose }: Props) => {
   //Set variable for suggested restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
+  const [seeSuggestedRestaurants, toggleSeeSuggestedRestaurants] =
+    useState(false);
 
   //Fetch suggested restaurants
   useEffect(() => {
-    toggleSeeSuggestedFood(false);
+    toggleSeeSuggestedRestaurants(false);
     const latitude = location.latitude;
     const longitude = location.longitude;
     const pastQueriesResult = getExistingQueries();
@@ -76,7 +77,7 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
     fetchSuggestedRestaurants(pastQueriesResult, latitude, longitude)
       .then((data) => {
         setRestaurants(data);
-        toggleSeeSuggestedFood(true);
+        toggleSeeSuggestedRestaurants(true);
       })
       .catch((error) => {
         console.error(
@@ -88,7 +89,7 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 
   return (
     <>
-      {!seeSuggestedFood ? (
+      {!seeSuggestedRestaurants ? (
         <SearchingIndicator />
       ) : getExistingQueries().length == 0 ? (
         <NoRestaurantsFound displayMessage="Oops! It appears you do not have any past searches." />
@@ -105,4 +106,4 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
   );
 };
 
-export default SuggestedFood;
+export default SuggestedRestaurants;

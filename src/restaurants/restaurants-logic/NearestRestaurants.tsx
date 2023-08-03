@@ -10,7 +10,7 @@ interface Props {
   onClickClose: () => void;
 }
 
-const NearestFood = ({ userLocation, onClickClose }: Props) => {
+const NearestRestaurants = ({ userLocation, onClickClose }: Props) => {
   console.log(
     "Coordinates for nearest restaurants: " +
       userLocation.latitude +
@@ -18,7 +18,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
       userLocation.longitude
   );
 
-  const [seeNearestFood, toggleSeeNearestFood] = useState(false);
+  const [seeNearestRestaurants, toggleSeeNearestRestaurants] = useState(false);
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
@@ -45,14 +45,14 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   //Fetch nearby restaurants.
 
   useEffect(() => {
-    toggleSeeNearestFood(false);
+    toggleSeeNearestRestaurants(false);
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
     if (latitude == 0 || longitude == 0) return;
     fetchNearbyRestaurants(latitude, longitude)
       .then((data) => {
         setRestaurants(data);
-        toggleSeeNearestFood(true);
+        toggleSeeNearestRestaurants(true);
       })
       .catch((error) => {
         console.error("Error finding nearest restaurants:", error);
@@ -61,7 +61,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
 
   return (
     <>
-      {!seeNearestFood ? (
+      {!seeNearestRestaurants ? (
         <SearchingIndicator />
       ) : restaurants.length == 0 ? (
         <NoRestaurantsFound displayMessage="Oops! We could not find any restaurants." />
@@ -76,4 +76,4 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   );
 };
 
-export default NearestFood;
+export default NearestRestaurants;

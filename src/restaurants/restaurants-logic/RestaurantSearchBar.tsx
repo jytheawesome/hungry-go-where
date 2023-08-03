@@ -1,4 +1,4 @@
-/* Food search bar is in charge of getting user search query. */
+/* Restaurants search bar is in charge of getting user search query. */
 
 import { useState, FormEvent } from "react";
 import styles from "../styles/RestaurantSearchBar.module.css";
@@ -8,7 +8,7 @@ interface Props {
   onSubmitSearch: (searchString: string) => void;
 }
 
-const FoodSearchBar = ({ onSubmitSearch }: Props) => {
+const RestaurantsSearchBar = ({ onSubmitSearch }: Props) => {
   const [searchText, setSearchText] = useState<string>(
     " Search for a restaurant"
   );
@@ -50,4 +50,4 @@ const FoodSearchBar = ({ onSubmitSearch }: Props) => {
   );
 };
 
-export default FoodSearchBar;
+export default RestaurantsSearchBar;

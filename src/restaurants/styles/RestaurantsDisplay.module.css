@@ -60,6 +60,10 @@
 
 .photoContainer {
   padding: 20px;
+  min-width: 300px;
+  min-height: 250px;
+  max-width: 300px;
+  max-height: 250px;
 }
 
 .noRestaurantsFoundMessage {

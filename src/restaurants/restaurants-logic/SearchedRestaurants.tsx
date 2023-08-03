@@ -11,7 +11,11 @@ interface Props {
   onClickClose: () => void;
 }
 
-const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
+const SearchedRestaurants = ({
+  searchString,
+  userLocation,
+  onClickClose,
+}: Props) => {
   console.log(
     "Coordinates for searched restaurants: " +
       userLocation.latitude +
@@ -21,7 +25,8 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   //Set variable for nearest restaurants
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);
+  const [seeSearchedRestaurants, toggleSeeSearchedRestaurants] =
+    useState(false);
 
   //Define function to search for restaurants based on keyword from backend server
   const fetchSearchedRestaurants = async (
@@ -48,14 +53,14 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   //Fetch searched restaurants
   useEffect(() => {
-    toggleSeeSearchedFood(false);
+    toggleSeeSearchedRestaurants(false);
     const latitude = userLocation.latitude;
     const longitude = userLocation.longitude;
 
     fetchSearchedRestaurants(searchString, latitude, longitude)
       .then((data) => {
         setRestaurants(data);
-        toggleSeeSearchedFood(true);
+        toggleSeeSearchedRestaurants(true);
       })
       .catch((error) => {
         console.error(
@@ -67,7 +72,7 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
 
   return (
     <>
-      {!seeSearchedFood ? (
+      {!seeSearchedRestaurants ? (
         <SearchingIndicator />
       ) : searchString == "" || searchString == " Search for a restaurant" ? (
         <NoRestaurantsFound displayMessage="Oops! Your search bar seems to be empty." />
@@ -84,4 +89,4 @@ const SearchedFood = ({ searchString, userLocation, onClickClose }: Props) => {
   );
 };
 
-export default SearchedFood;
+export default SearchedRestaurants;

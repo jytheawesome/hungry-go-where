@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
-import NearestFood from "../restaurants/restaurants-logic/NearestRestaurants";
-import FoodSearchBar from "../restaurants/restaurants-logic/RestaurantSearchBar";
-import SearchedFood from "../restaurants/restaurants-logic/SearchedRestaurants";
-import SuggestedFood from "../restaurants/restaurants-logic/SuggestedRestaurants";
 import { Position, PositionError } from "../custom-ds/custom";
+import Restaurants from "../restaurants/Restaurants";
 
 function App() {
   // Declare user location variable
@@ -12,40 +9,6 @@ function App() {
     longitude: 0,
     latitude: 0,
   });
-
-  // Declare user search word variable
-  const [searchString, setSearchString] = useState("");
-
-  // Toggle restaurant displays
-  const [seeNearestFood, toggleSeeNearestFood] = useState(false);
-  const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
-  const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);
-
-  const restaurantDisplaySelector = (selector: string) => {
-    if (selector == "Nearest") {
-      toggleSeeNearestFood(true);
-      toggleSeeSearchedFood(false);
-      toggleSeeSuggestedFood(false);
-    } else if (selector == "Searched") {
-      toggleSeeNearestFood(false);
-      toggleSeeSearchedFood(true);
-      toggleSeeSuggestedFood(false);
-    } else if (selector == "Suggested") {
-      toggleSeeNearestFood(false);
-      toggleSeeSearchedFood(false);
-      toggleSeeSuggestedFood(true);
-    } else {
-      toggleSeeNearestFood(false);
-      toggleSeeSearchedFood(false);
-      toggleSeeSuggestedFood(false);
-    }
-  };
-
-  // handler for submitting search keywords
-  const onSubmitSearch = (searchString: string) => {
-    setSearchString(searchString);
-    restaurantDisplaySelector("Searched");
-  };
 
   // define success function for getting user location
   function successCallback(position: Position) {
@@ -72,12 +35,23 @@ function App() {
   return (
     <>
       <div className={styles.mainContainer}>
+        <img className={styles.logoPhoto} src="/restaurantCartoon.png" />
         <h1 className={styles.title}> Hungry Go Where? </h1>
-        <FoodSearchBar onSubmitSearch={onSubmitSearch} />
+        <Restaurants userLocation={userLocation} />
+      </div>
+    </>
+  );
+}
+export default App;
+
+/*
+<RestaurantsSearchBar onSubmitSearch={onSubmitSearch} />
         <div className={styles.buttonsContainer}>
           <button
             className={
-              seeNearestFood ? styles.buttonHighlight : styles.buttonDefault
+              seeNearestRestaurants
+                ? styles.buttonHighlight
+                : styles.buttonDefault
             }
             onClick={() => restaurantDisplaySelector("Nearest")}
           >
@@ -85,7 +59,9 @@ function App() {
           </button>
           <button
             className={
-              seeSuggestedFood ? styles.buttonHighlight : styles.buttonDefault
+              seeSuggestedRestaurants
+                ? styles.buttonHighlight
+                : styles.buttonDefault
             }
             onClick={() => restaurantDisplaySelector("Suggested")}
           >
@@ -93,28 +69,24 @@ function App() {
           </button>
         </div>
         <div className={styles.restaurantsContainer}>
-          {seeNearestFood && (
-            <NearestFood
+          {seeNearestRestaurants && (
+            <NearestRestaurants
               userLocation={userLocation}
               onClickClose={() => restaurantDisplaySelector("Close")}
             />
           )}
-          {seeSearchedFood && (
-            <SearchedFood
+          {seeSearchedRestaurants && (
+            <SearchedRestaurants
               onClickClose={() => restaurantDisplaySelector("Close")}
               searchString={searchString}
               userLocation={userLocation}
             />
           )}
-          {seeSuggestedFood && (
-            <SuggestedFood
+          {seeSuggestedRestaurants && (
+            <SuggestedRestaurants
               onClickClose={() => restaurantDisplaySelector("Close")}
               location={userLocation}
             />
           )}
         </div>
-      </div>
-    </>
-  );
-}
-export default App;
+        */

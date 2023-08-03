@@ -7,6 +7,8 @@ interface Props {
   onClickClose: () => void;
 }
 
+const apiKey = process.env.maps_api;
+
 const RestaurantsDisplay = ({
   restaurants,
   onClickClose,
@@ -27,16 +29,19 @@ const RestaurantsDisplay = ({
             <h3 className={styles.descriptionContainer}>
               <img
                 className={styles.locationIcon}
-                src="/location.png"
-                alt="../../public/location.png"
+                src={"/locationSymbol.png"}
               />
               {restaurant.vicinity}
             </h3>
           </div>
           <img
             className={styles.photoContainer}
-            src="/restaurant.jpg"
-            alt="../../public/restaurant.jpg"
+            src={
+              restaurant.photos
+                ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
+            &key=${apiKey}`
+                : "/public/imagePlaceHolder.png"
+            }
           />
         </div>
       ))}
@@ -47,27 +52,11 @@ const RestaurantsDisplay = ({
 export default RestaurantsDisplay;
 
 /*
-    <ul>
-      {restaurants.map((restaurant) => (
-        <li key={`${restaurant.name}-${restaurant.vicinity}`}>
-          <div className={styles.photoAndDescription}>
-            <div className={styles.description}>
-              <h3>{restaurant.name}</h3>
-              <p>{restaurant.vicinity}</p>
-            </div>
+
             <div className={styles.photo}>
               {restaurant.photos ? (
                 <img
                   className={styles.restaurantImage}
                   src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
                 &key=AIzaSyByYmhlaUy0wx7xIb8J50vNAER2MPF8jns`}
-                />
-              ) : (
-                "No photo available :("
-              )}
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-    */
+*/
