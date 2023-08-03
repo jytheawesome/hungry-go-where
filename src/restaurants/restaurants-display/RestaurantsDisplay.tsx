@@ -40,7 +40,7 @@ const RestaurantsDisplay = ({
               restaurant.photos
                 ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
             &key=${apiKey}`
-                : "/public/imagePlaceHolder.png"
+                : "/imagePlaceHolder.png"
             }
           />
         </div>
