@@ -11,7 +11,7 @@ const apiKey = "AIzaSyBhWuoawqOBQJxIP86bdnc7_ChEAB5i9fw";
 const key = process.env.REACT_APP_KEY || apiKey;
 
 console.log(apiKey);
-console.log(key);
+console.log(process.env.REACT_APP_KEY);
 
 const RestaurantsDisplay = ({
   restaurants,
