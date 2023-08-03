@@ -7,7 +7,7 @@ interface Props {
   onClickClose: () => void;
 }
 
-const apiKey = process.env.maps_api;
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const RestaurantsDisplay = ({
   restaurants,
