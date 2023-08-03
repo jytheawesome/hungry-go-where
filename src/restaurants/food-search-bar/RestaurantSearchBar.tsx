@@ -1,5 +1,7 @@
+/* Food search bar is in charge of getting user search query. */
+
 import { useState, FormEvent } from "react";
-import styles from "./FoodSearchBar.module.css";
+import styles from "./RestaurantSearchBar.module.css";
 import { updateCookie } from "../../cookies/cookie";
 
 interface Props {
@@ -7,7 +9,6 @@ interface Props {
 }
 
 const FoodSearchBar = ({ onSubmitSearch }: Props) => {
-  //const searchStringRef = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState<string>(
     " Search for a restaurant"
   );
@@ -27,6 +28,7 @@ const FoodSearchBar = ({ onSubmitSearch }: Props) => {
     updateCookie(searchText);
     onSubmitSearch(searchText);
   };
+
   return (
     <>
       <form onSubmit={handleSubmit}>

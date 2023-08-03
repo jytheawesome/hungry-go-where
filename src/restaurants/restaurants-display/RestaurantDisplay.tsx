@@ -1,5 +1,5 @@
 import { Restaurant } from "../../custom-ds/custom";
-import styles from "./RestaurantDisplay.module.css";
+import styles from "./RestaurantsDisplay.module.css";
 
 /*
 const dummyRestaurants: dummyRestaurant[] = [

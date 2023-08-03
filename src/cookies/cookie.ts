@@ -1,4 +1,4 @@
-//To store user search query in browser cookie
+// To store user search queries in browser cookie
 export function setCookie(
   name: string,
   value: string,
@@ -11,7 +11,7 @@ export function setCookie(
   console.log("Set cookie successfully!", value);
 }
 
-//To retrieve list of user search queries from browser cookie
+// To retrieve user queries from browser cookie in the form of a string
 export function getCookie(name: string): string | null {
   const cookies = document.cookie.split(";").map((cookie) => cookie.trim());
   for (const cookie of cookies) {
@@ -23,12 +23,13 @@ export function getCookie(name: string): string | null {
   return null;
 }
 
-// To get existing queries from cookie in JSON form. Returns null if cookie not found.
+// To retrieve user queries from browser cookie in the form of a string[]
 export function getExistingQueries(): string[] {
   const cookieValue = getCookie("searchQueries");
   return cookieValue ? JSON.parse(cookieValue) : [];
 }
 
+// check if 2 queries are similar
 export function areStringsSimilar(str1: string, str2: string): boolean {
   const words1 = str1.toLowerCase().split(" ");
   const words2 = str2.toLowerCase().split(" ");
@@ -45,7 +46,7 @@ export function areStringsSimilar(str1: string, str2: string): boolean {
   return false;
 }
 
-// Function to add a string to the array, considering similarity and size constraints
+// Add a new query considering similarity and size constraints
 export function addStringToArray(existingQueries: string[], newItem: string) {
   const MAX_ITEMS = 3;
   const index = existingQueries.findIndex((query) =>
@@ -66,6 +67,7 @@ export function addStringToArray(existingQueries: string[], newItem: string) {
   }
 }
 
+// update cookie based on new user query
 export function updateCookie(searchInput: string) {
   const existingQueries = getExistingQueries() || [];
   addStringToArray(existingQueries, searchInput);

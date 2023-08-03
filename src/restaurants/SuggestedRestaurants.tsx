@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { getExistingQueries } from "../cookies/cookie";
 import { Restaurant } from "../custom-ds/custom";
-import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
-import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
-import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
+import RestaurantDisplay from "./restaurants-display/RestaurantDisplay";
+import NoRestaurantsDisplay from "./restaurants-display/noRestaurantsDisplay";
+import SearchingIndicator from "./restaurants-display/SearchingIndicator";
 
 // declarations
 
@@ -64,8 +64,6 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
 
-  //const [pastQueries] = useState<string[]>(getExistingQueries());
-
   //Fetch suggested restaurants
   useEffect(() => {
     toggleSeeSuggestedFood(false);
@@ -91,7 +89,7 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
   return (
     <>
       {!seeSuggestedFood ? (
-        <SearchingForRestaurants />
+        <SearchingIndicator />
       ) : getExistingQueries().length == 0 ? (
         <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
       ) : restaurants.length == 0 ? (
@@ -108,10 +106,3 @@ const SuggestedFood = ({ location, onClickClose }: Props) => {
 };
 
 export default SuggestedFood;
-/*
- {getExistingQueries().length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! It appears you do not have any past searches." />
-      ) : restaurants.length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! There are no restaurants near you based on your past searches." />
-      ) : (
-*/

@@ -1,4 +1,4 @@
-import styles from "./RestaurantDisplay.module.css";
+import styles from "./RestaurantsDisplay.module.css";
 
 interface Props {
   displayMessage: string;

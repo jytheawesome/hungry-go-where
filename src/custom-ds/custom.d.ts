@@ -1,3 +1,7 @@
+/*
+  Custom interfaces.
+*/
+
 interface Navigator {
   geolocation?: Geolocation;
 }
@@ -49,14 +53,12 @@ type Photo = {
   width: number;
 };
 
-// Restaurant interface
 export interface Restaurant {
   name: string;
   vicinity: string;
   photos: Photo[];
 }
 
-// Dummy Restaurant interface
 export interface dummyRestaurant {
   name: string;
   vicinity: string;

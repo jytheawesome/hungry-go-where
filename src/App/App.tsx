@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
-import NearestFood from "../restaurants/NearestFood";
-import FoodSearchBar from "../restaurants/food-search-bar/FoodSearchBar";
-import SearchedFood from "../restaurants/SearchedFood";
-import SuggestedFood from "../restaurants/SuggestedFood";
+import NearestFood from "../restaurants/NearestRestaurants";
+import FoodSearchBar from "../restaurants/food-search-bar/RestaurantSearchBar";
+import SearchedFood from "../restaurants/SearchedRestaurants";
+import SuggestedFood from "../restaurants/SuggestedRestaurants";
 import { Position, PositionError } from "../custom-ds/custom";
 
 function App() {
-  //Declarations
-
-  // user location
+  // Declare user location variable
   const [userLocation, setUserLocation] = useState({
     longitude: 0,
     latitude: 0,
   });
-  // user search keywords
+  // Declare user search word variable
   const [searchString, setSearchString] = useState("");
-  // Restaurant display view
+
+  // Toggle restaurant displays
   const [seeNearestFood, toggleSeeNearestFood] = useState(false);
   const [seeSuggestedFood, toggleSeeSuggestedFood] = useState(false);
   const [seeSearchedFood, toggleSeeSearchedFood] = useState(false);

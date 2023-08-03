@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import RestaurantDisplay from "./restaurant-display/RestaurantDisplay";
+import RestaurantDisplay from "./restaurants-display/RestaurantDisplay";
 import { Restaurant } from "../custom-ds/custom";
-import NoRestaurantsDisplay from "./restaurant-display/noRestaurantsDisplay";
-import SearchingForRestaurants from "./restaurant-display/SearchingForRestaurants";
+import NoRestaurantsDisplay from "./restaurants-display/noRestaurantsDisplay";
+import SearchingIndicator from "./restaurants-display/SearchingIndicator";
 
 interface Props {
   userLocation: { latitude: number; longitude: number };
@@ -11,7 +11,6 @@ interface Props {
 }
 
 const NearestFood = ({ userLocation, onClickClose }: Props) => {
-  // Declarations
   console.log(
     "Coordinates for nearest restaurants: " +
       userLocation.latitude +
@@ -43,14 +42,6 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
     }
   };
 
-  // fetchNearbyRestaurants(userLocation.latitude, userLocation.longitude)
-  //   .then((data) => {
-  //     setRestaurants(data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error finding nearest restaurants:", error);
-  //   });
-
   //Fetch nearby restaurants.
 
   useEffect(() => {
@@ -71,7 +62,7 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
   return (
     <>
       {!seeNearestFood ? (
-        <SearchingForRestaurants />
+        <SearchingIndicator />
       ) : restaurants.length == 0 ? (
         <NoRestaurantsDisplay displayMessage="Oops! We could not find any restaurants." />
       ) : (
@@ -83,21 +74,6 @@ const NearestFood = ({ userLocation, onClickClose }: Props) => {
       )}
     </>
   );
-  {
-    /*
-    <>
-      {restaurants.length == 0 ? (
-        <NoRestaurantsDisplay displayMessage="Oops! There are no nearest restaurants near you at the moment." />
-      ) : (
-        <RestaurantDisplay
-          onClickClose={onClickClose}
-          headerMessage="Restaurants that are closest to you: "
-          restaurants={restaurants}
-        />
-      )}
-    </>
-      */
-  }
 };
 
 export default NearestFood;
