@@ -8,7 +8,6 @@ interface Props {
 }
 
 const key = process.env.REACT_APP_KEY;
-
 console.log(process.env.REACT_APP_KEY);
 
 const RestaurantsDisplay = ({
