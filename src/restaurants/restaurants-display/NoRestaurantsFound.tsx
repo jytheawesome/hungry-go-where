@@ -6,7 +6,7 @@ interface Props {
 
 const NoRestaurantsFound = ({ displayMessage }: Props) => {
   return (
-    <div className={styles.NoRestaurantsFoundMessage}>
+    <div className={styles.noRestaurantsFoundMessage}>
       <h3> {displayMessage} </h3>
       <img src="/restaurantCartoon.png" width={300} />
     </div>
