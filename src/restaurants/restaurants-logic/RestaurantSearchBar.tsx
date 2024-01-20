@@ -34,7 +34,7 @@ const RestaurantsSearchBar = ({ onSubmitSearch }: Props) => {
         <div className="flex flex-row items-center justify-center">
           <input
             type="text"
-            value={searchText}
+            placeholder={searchText}
             className="text-2xl w-[600px] h-10 rounded-md border-2 border-black mr-1 pl-2"
             id="searchInput"
             onChange={handleInputChange}
