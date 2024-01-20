@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styles from "./App.module.css";
 import { Position, PositionError } from "../custom-ds/custom";
 import Restaurants from "../restaurants/Restaurants";
 
@@ -34,11 +33,12 @@ function App() {
 
   return (
     <>
-      <div className={styles.mainContainer}>
-        <img className={styles.logoPhoto} src="/restaurantCartoon.png" />
-        <h1 className={styles.title}> Hungry Go Where? </h1>
+      <div className="relative flex flex-col items-center justify-center p-5 font-sans">
+        <img src="/restaurantCartoon.png" className="w-52 h-52" alt="Logo" />
+        <div className="text-6xl font-sans my-2 mb-8">Hungry Go Where? </div>
         <Restaurants userLocation={userLocation} />
       </div>
+      {/* <div className={styles.mainContainer}></div> */}
     </>
   );
 }

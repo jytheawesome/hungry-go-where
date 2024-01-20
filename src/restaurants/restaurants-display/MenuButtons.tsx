@@ -1,5 +1,3 @@
-import styles from "../styles/MenuButtons.module.css";
-
 interface Props {
   seeNearestRestaurants: boolean;
   seeSuggestedRestaurants: boolean;
@@ -13,24 +11,20 @@ const MenuButtons = ({
 }: Props) => {
   return (
     <>
-      <div className={styles.buttonsContainer}>
+      <div className="flex justify-center items-center flex-row mb-7">
         {" "}
         <button
-          className={
-            seeNearestRestaurants
-              ? styles.buttonHighlight
-              : styles.buttonDefault
-          }
+          className={`mt-5 mr-5 h-8 rounded-md border-2 border-black ${
+            seeNearestRestaurants ? "bg-blue-400" : "bg-yellow-400"
+          }`}
           onClick={() => restaurantDisplaySelector("Nearest")}
         >
           See restaurants near me
         </button>
         <button
-          className={
-            seeSuggestedRestaurants
-              ? styles.buttonHighlight
-              : styles.buttonDefault
-          }
+          className={`mt-5 mr-5 h-8 rounded-md border-2 border-black ${
+            seeSuggestedRestaurants ? "bg-blue-400" : "bg-yellow-400"
+          }`}
           onClick={() => restaurantDisplaySelector("Suggested")}
         >
           See restaurants based on my past searches

@@ -1,7 +1,6 @@
 /* Restaurants search bar is in charge of getting user search query. */
 
 import { useState, FormEvent } from "react";
-import styles from "../styles/RestaurantSearchBar.module.css";
 import { updateCookie } from "../../cookies/cookie";
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 
 const RestaurantsSearchBar = ({ onSubmitSearch }: Props) => {
   const [searchText, setSearchText] = useState<string>(
-    " Search for a restaurant"
+    "Search for a restaurant"
   );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,16 +31,19 @@ const RestaurantsSearchBar = ({ onSubmitSearch }: Props) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className={styles.searchContainer}>
+        <div className="flex flex-row items-center justify-center">
           <input
             type="text"
             value={searchText}
-            className={`form-control ${styles.searchBar}`}
+            className="text-2xl w-[600px] h-10 rounded-md border-2 border-black mr-1 pl-2"
             id="searchInput"
             onChange={handleInputChange}
             onClick={handleInputClick}
           />
-          <button type="submit" className={styles.searchButton}>
+          <button
+            type="submit"
+            className="h-10 w-15 rounded-md border-2 border-black"
+          >
             Search
           </button>
         </div>
