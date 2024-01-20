@@ -15,11 +15,11 @@ const RestaurantsDisplay = ({
 }: Props) => {
   return (
     <div className="flex flex-col">
-      <div className="w-[900px] flex flex-row items-center mb-5 rounded-2xl bg-yellow-400">
-        <h3 className="pl-5 w-[800px]">{headerMessage}</h3>
+      <div className="w-[900px] flex flex-row items-center mb-1 rounded-2xl bg-yellow-400 h-11">
+        <h3 className="pl-5 w-[820px]">{headerMessage}</h3>
         <button
           onClick={onClickClose}
-          className="rounded-md border-2 border-black h-9"
+          className="rounded-xl px-3 ml-[-8px] border-2 border-black h-8"
         >
           Close
         </button>

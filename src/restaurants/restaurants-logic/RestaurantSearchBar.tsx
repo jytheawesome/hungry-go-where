@@ -31,18 +31,18 @@ const RestaurantsSearchBar = ({ onSubmitSearch }: Props) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center h-10">
           <input
             type="text"
             placeholder={searchText}
-            className="text-2xl w-[600px] h-10 rounded-md border-2 border-black mr-1 pl-2"
+            className="text-xl w-[600px] rounded-md border-2 border-black mr-1 pl-2 h-11"
             id="searchInput"
             onChange={handleInputChange}
             onClick={handleInputClick}
           />
           <button
             type="submit"
-            className="h-10 w-15 rounded-md border-2 border-black"
+            className="text-xl rounded-md border-2 border-black px-4 h-11"
           >
             Search
           </button>

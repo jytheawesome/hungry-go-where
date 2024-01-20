@@ -33,14 +33,16 @@ function App() {
 
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center p-5 font-sans">
-        <img src="/restaurantCartoon.png" className="w-52 h-52" alt="Logo" />
-        <div className="text-6xl font-sans my-2 mb-8">Hungry Go Where? </div>
+      <div className="relatve flex flex-col items-center justify-center font-sans p-5">
+        <div className="flex flex-row items-center my-8">
+          <img src="/restaurantCartoon.png" className="w-16 h-16" alt="Logo" />
+          <div className="text-3xl pl-6 font-semibold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
+            Hungry Go Where?{" "}
+          </div>
+        </div>
         <Restaurants userLocation={userLocation} />
       </div>
-      {/* <div className={styles.mainContainer}></div> */}
     </>
   );
 }
 export default App;
-
