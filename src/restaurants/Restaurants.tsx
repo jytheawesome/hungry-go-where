@@ -1,5 +1,4 @@
 import { useState } from "react";
-import styles from "./styles/Restaurants.module.css";
 import RestaurantsSearchBar from "./restaurants-logic/RestaurantSearchBar";
 import NearestRestaurants from "./restaurants-logic/NearestRestaurants";
 import SuggestedRestaurants from "./restaurants-logic/SuggestedRestaurants";
@@ -46,7 +45,7 @@ const Restaurants = ({ userLocation }: Props) => {
         seeSuggestedRestaurants={seeSuggestedRestaurants}
         restaurantDisplaySelector={restaurantDisplaySelector}
       />
-      <div className={styles.restaurantsContainer}>
+      <div>
         {seeNearestRestaurants && (
           <NearestRestaurants
             userLocation={userLocation}

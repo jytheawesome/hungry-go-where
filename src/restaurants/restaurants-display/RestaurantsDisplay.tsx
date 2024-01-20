@@ -1,6 +1,4 @@
 import { Restaurant } from "../../custom-ds/custom";
-import styles from "../styles/RestaurantsDisplay.module.css";
-
 interface Props {
   restaurants: Restaurant[];
   headerMessage: string;
@@ -16,27 +14,27 @@ const RestaurantsDisplay = ({
   headerMessage,
 }: Props) => {
   return (
-    <div className={styles.restaurantsContainer}>
-      <div className={styles.headerAndCloseButtonContainer}>
-        <h3 className={styles.header}>{headerMessage}</h3>
-        <button onClick={onClickClose} className={styles.closeButton}>
+    <div className="flex flex-col">
+      <div className="w-[900px] flex flex-row items-center mb-1 rounded-2xl bg-yellow-400 h-11">
+        <h3 className="pl-5 w-[820px]">{headerMessage}</h3>
+        <button
+          onClick={onClickClose}
+          className="rounded-xl px-3 ml-[-8px] border-2 border-black h-8"
+        >
           Close
         </button>
       </div>
       {restaurants.map((restaurant) => (
-        <div className={styles.restaurantContainer}>
-          <div className={styles.nameAndDescriptionContainer}>
-            <h2 className={styles.nameContainer}>{restaurant.name}</h2>
-            <h3 className={styles.descriptionContainer}>
-              <img
-                className={styles.locationIcon}
-                src={"/locationSymbol.png"}
-              />
+        <div className="flex flex-row h-[300px] w-[900px] bg-yellow-400 rounded-2xl mt-1 mb-1">
+          <div className="w-[700px] flex flex-col">
+            <h2 className="pb-7 pl-7 pt-2.5">{restaurant.name}</h2>
+            <h3 className="pb-[100px] pl-7">
+              <img className="w-5 h-5 pr-1" src={"/locationSymbol.png"} />
               {restaurant.vicinity}
             </h3>
           </div>
           <img
-            className={styles.photoContainer}
+            className="p-5 min-w-[300px] min-h-[250px] max-w-[300px] max-h-[250px]"
             src={
               restaurant.photos
                 ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${restaurant.photos[0].photo_reference}
